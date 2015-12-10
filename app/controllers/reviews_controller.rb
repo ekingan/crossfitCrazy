@@ -21,13 +21,12 @@ class ReviewsController < ApplicationController
   end
 
   def update
-  	@gym = Gym.find(params[:id])
     @review = Review.find(params[:id])
     @reviews = @gym.reviews
     @user = current_user
     if current_user
       @review.update_attributes(review_params)
-      redirect_to(:back) 
+      redirect_to @review.gym 
     else
     end
   end
@@ -35,11 +34,12 @@ class ReviewsController < ApplicationController
   def destroy
     # find current user
     @user = current_user
-    @gym = Gym.find(params[:id])
     # find post to delete
-    review = Review.find(params[:id])
+    @review = Review.find(params[:id])
     # destroy post
-    review.destroy
+    @gym = @review.gym
+    @review.destroy
+
     redirect_to @gym
   end
 

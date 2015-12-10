@@ -47,23 +47,7 @@
 	      	<%end%>
 	     		</span>
 				 <!-- Edit review -->
-					<div class="container">
-					  <div class="col-sm-6">
-					    <%= form_for @review do |r| %>
-					      <!-- error message -->
-					      <% if @review_edit_error %>
-					        <div class="alert alert-info text-center alert-danger"><%= flash[:error] %></div>
-					      <% end %>
-					      <h2> Edit Review </h2>
-					      <%= r.text_area :body, class: "form-control", autofocus: true %>
-					      <br>
-					      <span class="pull-right">
-					        <%= r.submit 'Submit', value: "Submit", class: "btn btn-primary" %> 
-					        <%= link_to 'Delete', method: :delete, class: "btn btn-danger" %>
-					      </span>
-					    <% end %>
-					  </div>
-					</div>
+				<!--  -->
 					<!-- end edit review -->
 					<hr><br>
 	     	</li>

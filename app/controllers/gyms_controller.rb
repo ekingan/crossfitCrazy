@@ -1,6 +1,7 @@
 class GymsController < ApplicationController
   def index
     @gyms = Gym.all
+    byebug
   end
 
   def new
@@ -10,8 +11,6 @@ class GymsController < ApplicationController
   end
 
   def show
-    # @lat = request.location.latitude
-    # @long = request.location.longitude
     @user = current_user
     @gym = Gym.find(params[:id])
     @reviews = @gym.reviews
