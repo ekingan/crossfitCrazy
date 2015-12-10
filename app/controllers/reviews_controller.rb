@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     @user = current_user
     if current_user
       @review.update_attributes(review_params)
-      render "gyms/show" 
+      redirect_to(:back) 
     else
     end
   end

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
 	has_many :reviews
   has_secure_password
 
@@ -6,6 +7,10 @@ class User < ActiveRecord::Base
 
 	validates :email, :username, :password_digest, presence: true
 	validates_confirmation_of :password_digest
+
+	# geocoded_by :ip_address,
+ #  :latitude => :lat, :longitude => :long 
+	# after_validation :geocode
 
 	#add validator of unique emails here
 

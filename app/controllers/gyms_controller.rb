@@ -10,10 +10,12 @@ class GymsController < ApplicationController
   end
 
   def show
+    # @lat = request.location.latitude
+    # @long = request.location.longitude
     @user = current_user
     @gym = Gym.find(params[:id])
-    @review = @gym.reviews.new(params[:review])
     @reviews = @gym.reviews
+    @review = Review.new
   end
 
   def edit
