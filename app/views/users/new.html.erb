@@ -9,11 +9,11 @@
       <% end %>
       <div id="sign-up-form">
         <%= form_for @user do |f| %>
-    			<%= f.label :username %>
-    			<%= f.username_field :username, class: "form-control", placeholder: @user.username %> %>
-          <br>
           <%= f.label :email %>
           <%= f.email_field :email, class: "form-control", placeholder: @user.email %>
+          <br>
+          <%= f.label :username %>
+          <%= f.text_field :username, class: "form-control", placeholder: @user.username %> 
           <br>
           <%= f.label :password %>
           <%= f.password_field :password, class: "form-control" %>

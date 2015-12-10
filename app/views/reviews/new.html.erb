@@ -1,0 +1,19 @@
+<!-- New review form -->
+<div class="container">
+	<div class="col-md-6 col-sm-offset-2">
+		<div class="well">	
+			<h2 class="text-center">New Review</h2>
+			<% if @review_error %>
+			  <div class="alert alert-info text-center alert-danger"><%= flash[:error] %></div>
+			<% end %>
+			<%= form_for @review do |r| %>
+				<%= r.text_field :body, class: "form-control", autofocus: true %>
+				<br>
+				<div class="text-right">
+					<%= r.submit 'review', value: "Post!", class: "btn btn-primary" %>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>

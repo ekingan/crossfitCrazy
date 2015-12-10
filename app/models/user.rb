@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
 	has_many :reviews
+  has_secure_password
+
 	BCrypt::Engine.cost = 12
 
-	validates :email, :password_digest, presence: true
+	validates :email, :username, :password_digest, presence: true
 	validates_confirmation_of :password_digest
 
 	#add validator of unique emails here

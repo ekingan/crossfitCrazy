@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= form_for @gym do |g| %>
+      <!-- error message -->
+      <% if @gym_edit_error %>
+        <div class="alert alert-info text-center alert-danger"><%= flash[:error] %></div>
+      <% end %>
+      <%= g.label :website %>
+      <%= g.text_field :website, class: "form-control", autofocus: true %>
+      <%= g.label :address %>
+      <%= g.text_field :address, class: "form-control" %>
+      <br>
+      <%= g.label :phone %>
+      <%= g.text_field :phone, class: "form-control" %>
+      <br>
+      <span class="pull-right">
+        <%= g.submit 'Submit', value: "Submit", class: "btn btn-primary" %> 
+      </span>
+    <% end %>
+  </div>
+</div>

@@ -1,31 +1,24 @@
 Rails.application.routes.draw do
   
-  get 'gyms/index'
+  root 'gyms#index'
 
-  get 'gyms/new'
-
-  get 'gyms/create'
-
-  get 'gyms/show'
-
-  get 'gyms/update'
-
-  get 'gyms/destroy'
+  resources :gyms 
+  resources :reviews
 
   get 'sessions/new'
 
   get 'sessions/create'
-
   get 'sessions/destroy'
 
   get 'users/new'
 
   get 'users/create'
 
-  root to: 'gyms#index'
+  
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"
-  get "/sign_up", to: "users#new", as: "sign_up"
+  get "/signup", to: "users#new", as: "signup"
+  get '/logout', to: 'sessions#destroy', as: :logout
 
   resources :users
 

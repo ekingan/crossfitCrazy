@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
       #save the user's id into the session
       session[:user_id] = @user.id
       #redirect to the show page
+      redirect_to root_path
     else
       # show errors
       @sessions_error = flash[:error] = "Username or password incorrect"

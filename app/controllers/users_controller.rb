@@ -8,15 +8,18 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
   		session[:user_id] = @user.id
-  		redirect_to @user
+  		redirect_to root_path, flash: { success: "Successfully signed up!" }
   	else
-  		redirect_to sign_up_path
+  		# show errors
+      @users_error = flash[:error] = @user.errors.full_messages.join(', ')
+      #if not saved return to new post form
+      render :new
   	end
   end
 
   private
 
   def user_params
-  	params.require(:user).permit(:email, :password, :password_confirmation)
+  	params.require(:user).permit(:email, :username, :password, :password_confirmation)
   end
 end
