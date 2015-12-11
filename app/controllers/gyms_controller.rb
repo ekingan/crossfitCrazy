@@ -1,13 +1,25 @@
 class GymsController < ApplicationController
   def index
-    user_location = request.remote_ip
-    p user_location
+    p request.location.latitude
+    if request.location.latitude == 0.0
+      latitude = 37.774929
+      longitude = -122.419416
+    else
+      latitude = request.location.latitude
+      longitude = request.location.longitude 
+    end 
+
     if params[:search_name]
       @gyms = Gym.search(params[:search_name]) 
     elsif params[:search_city]
       @gyms = Gym.near(params[:search_city], 50)
+    # elsif 
+    #   city = request.location.city
+    #   @gyms = Gym.near(city)
     else
-      @gyms = Gym.near(user_location)
+      @gyms = Gym.near([latitude, longitude], 50)
+      p @gyms
+      p request.location
     end
   end
 

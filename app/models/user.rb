@@ -9,12 +9,6 @@ class User < ActiveRecord::Base
 	validates :username, :password_digest, presence: true
 	validates_confirmation_of :password_digest
 	validates :email, presence: true, uniqueness: true
-	
-	geocoded_by :ip_address,
-  :latitude => :lat, :longitude => :long 
-	after_validation :geocode
-
-	#add validator of unique emails here
 
 	def authenticate(unencrypted_password)
 		secure_password = BCrypt::Password.new(self.password_digest)
