@@ -13,9 +13,6 @@ class GymsController < ApplicationController
       @gyms = Gym.search(params[:search_name]) 
     elsif params[:search_city]
       @gyms = Gym.near(params[:search_city], 50)
-    # elsif 
-    #   city = request.location.city
-    #   @gyms = Gym.near(city)
     else
       @gyms = Gym.near([latitude, longitude], 50)
       p @gyms
@@ -37,6 +34,7 @@ class GymsController < ApplicationController
   end
 
   def edit
+      @user = current_user
       @gym = Gym.find(params[:id])
       if current_user
         if @gym.save
@@ -45,9 +43,12 @@ class GymsController < ApplicationController
   end
 
   def update
+    @review = Review.new
+    @user = current_user
     @gym = Gym.find(params[:id])
     if current_user
       @gym.update_attributes(gym_params)
+      @reviews = @gym.reviews
       render :show
     else
     end

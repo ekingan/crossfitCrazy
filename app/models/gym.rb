@@ -2,7 +2,7 @@ class Gym < ActiveRecord::Base
 	has_many :reviews, dependent: :destroy
 	
 	reverse_geocoded_by :lat, :long, 
-	:address => :location, :latitude => :lat, :longitude => :long 
+	:address => :address, :latitude => :lat, :longitude => :long 
 	after_validation :reverse_geocode, :geocode
 
 

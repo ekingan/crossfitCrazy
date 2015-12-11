@@ -5,10 +5,10 @@
       <% if @gym_edit_error %>
         <div class="alert alert-info text-center alert-danger"><%= flash[:error] %></div>
       <% end %>
-      <%= g.label :website %>
-      <%= g.text_field :website, class: "form-control", autofocus: true %>
       <%= g.label :address %>
-      <%= g.text_field :address, class: "form-control" %>
+      <%= g.text_field :address, class: "form-control", autofocus: true %>
+      <%= g.label :website %>
+      <%= g.text_field :website, class: "form-control" %>
       <br>
       <%= g.label :phone %>
       <%= g.text_field :phone, class: "form-control" %>

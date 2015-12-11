@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
 	end
 
 	def edit
+    @user = current_user
     @review = Review.find(params[:id])
      if current_user
       if @review.save
@@ -22,7 +23,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @reviews = @gym.reviews
+    
     @user = current_user
     if current_user
       @review.update_attributes(review_params)

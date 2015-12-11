@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-2">
 			<h3><%=@gym.name%></h3>
 			<h4><%= @gym.website %></h4>
 			<h4><%= @gym.address %></h4>
@@ -13,11 +13,11 @@
 </div>
 <br>
 <!-- New review form -->
+<% if @user %>
 <div class="container">
-	<div class="col-md-6 col-sm-offset-2">
+	<div class="col-md-6 col-sm-offset-3">
 		<div class="well">	
 			<h4 class="text-center">New Review</h4>
-			<% if @user %>
 			<%= form_for @review do |r| %>
 				<%= r.hidden_field :gym_id, :value => @gym.id %>
 				<%= r.hidden_field :user_id, :value => @user.id %>
