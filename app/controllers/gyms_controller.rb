@@ -1,7 +1,10 @@
 class GymsController < ApplicationController
   def index
-    @gyms = Gym.all
-    byebug
+    if params[:search]
+      @gyms = Gym.search(params[:search]) 
+    else
+      @gyms = Gym.all
+    end
   end
 
   def new

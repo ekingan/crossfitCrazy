@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
 
 	BCrypt::Engine.cost = 12
 
-	validates :email, :username, :password_digest, presence: true
+	validates :username, :password_digest, presence: true
 	validates_confirmation_of :password_digest
-
+	validates :email, presence: true, uniqueness: true
 	# geocoded_by :ip_address,
  #  :latitude => :lat, :longitude => :long 
 	# after_validation :geocode
