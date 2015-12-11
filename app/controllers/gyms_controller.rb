@@ -1,5 +1,6 @@
 class GymsController < ApplicationController
   def index
+    p request.location
     if params[:search]
       @gyms = Gym.search(params[:search]) 
     else
