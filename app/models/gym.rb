@@ -1,10 +1,9 @@
 class Gym < ActiveRecord::Base
 	has_many :reviews, dependent: :destroy
 	
-
-	reverse_geocoded_by :latitude, :longitude,
-  :address => :location
-	after_validation :reverse_geocode
+	reverse_geocoded_by :lat, :long, 
+	:address => :location, :latitude => :lat, :longitude => :long 
+	after_validation :reverse_geocode, :geocode
 
 
 	def self.search(search)

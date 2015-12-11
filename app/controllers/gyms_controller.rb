@@ -1,13 +1,13 @@
 class GymsController < ApplicationController
   def index
+    user_location = request.remote_ip
+    p user_location
     if params[:search_name]
       @gyms = Gym.search(params[:search_name]) 
-    # elsif
-    #   @city = request.location.try(:city)
-    #   p @city
-    #   @gyms = Gym.near(@city)
+    elsif params[:search_city]
+      @gyms = Gym.near(params[:search_city], 50)
     else
-      @gyms = Gym.all
+      @gyms = Gym.near(user_location)
     end
   end
 
