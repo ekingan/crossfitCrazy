@@ -2,20 +2,17 @@ class User < ActiveRecord::Base
 
 	has_many :reviews
   has_secure_password
-  # acts_as_mappable :default_units => :miles,
-  #                  :default_formula => :sphere,
-  #                  :distance_field_name => :distance,
-  #                  :lat_column_name => :lat,
-  #                  :lng_column_name => :long
+
 
 	BCrypt::Engine.cost = 12
 
 	validates :username, :password_digest, presence: true
 	validates_confirmation_of :password_digest
 	validates :email, presence: true, uniqueness: true
-	# geocoded_by :ip_address,
- #  :latitude => :lat, :longitude => :long 
-	# after_validation :geocode
+	
+	geocoded_by :ip_address,
+  :latitude => :lat, :longitude => :long 
+	after_validation :geocode
 
 	#add validator of unique emails here
 

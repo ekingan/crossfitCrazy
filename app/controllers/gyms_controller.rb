@@ -1,10 +1,12 @@
 class GymsController < ApplicationController
   def index
-    p request.location
-    if params[:search]
-      @gyms = Gym.search(params[:search]) 
+    if params[:search_name]
+      @gyms = Gym.search(params[:search_name]) 
     else
+      @city = request.location.try(:city)
+      p @city
       @gyms = Gym.all
+      # @gyms = Gym.near(@city)
     end
   end
 
