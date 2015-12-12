@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 	validates_confirmation_of :password_digest
 	validates :email, presence: true, uniqueness: true
 
+	ratyrate_rater
+
+
 	def authenticate(unencrypted_password)
 		secure_password = BCrypt::Password.new(self.password_digest)
 

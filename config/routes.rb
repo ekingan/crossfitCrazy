@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  post '/rate' => 'rater#create', :as => 'rate'
+  
   root 'gyms#index'
 
   resources :gyms 

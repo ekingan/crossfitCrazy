@@ -47,7 +47,7 @@ class ReviewsController < ApplicationController
 	private
 	
 	def review_params
-		params.require(:review).permit(:gym_id, :user_id, :body)
+		params.require(:review).permit(:gym_id, :user_id, :body, :programming, :community, :value, :schedule, :facility, :trainers, :weightlifting_focus, :metcon_focus)
 	end
 
 end

@@ -1,38 +1,61 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-2">
-			<h3><%=@gym.name%></h3>
-			<h4><%= @gym.website %></h4>
-			<h4><%= @gym.address %></h4>
-			<h4><%= @gym.phone %></h4>
-			 <span class="pull-right">
-	        <%= link_to 'Edit Gym', edit_gym_path, class: 'btn btn-primary' %>
-	     </span>
-	  </div>
-	</div>
-</div>
-<br>
+		<div class="col-md-6">
+				
+				<h3><%=@gym.name%></h3>
+				<h4><%= @gym.website %></h4>
+				<h4><%= @gym.address %></h4>
+				<h4><%= @gym.phone %></h4>
+				<h5>Programming : <%= rating_for @gym, :programming %></h5>
+				<!-- put image here -->
+				 <span class="pull-right"><%= link_to 'Edit Gym', edit_gym_path, class: 'btn btn-primary' %></span>
+		  	<br>
+		  	<br>
+	  	
+	 	</div>
+		<br>
 <!-- New review form -->
-<% if @user %>
-<div class="container">
-	<div class="col-md-6 col-sm-offset-3">
-		<div class="well">	
-			<h4 class="text-center">New Review</h4>
-			<%= form_for @review do |r| %>
-				<%= r.hidden_field :gym_id, :value => @gym.id %>
-				<%= r.hidden_field :user_id, :value => @user.id %>
-				<%= r.text_area :body, class: "form-control", autofocus: true %>
-				<br>
-				<div class="text-right">
-					<%= r.submit 'review', value: "Post!", class: "btn btn-primary" %>
-				</div>
-			<% end %>
-			<% end %>
+		<% if @user %>
+		<div class="col-md-6 well">
+				<h4 class="text-center">New Review</h4>
+					<%= form_for @review do |r| %>
+						<%= r.hidden_field :gym_id, :value => @gym.id %>
+						<%= r.hidden_field :user_id, :value => @user.id %>
+						<%= r.text_area :body, class: "form-control", autofocus: true %>
+						<br>
+						<div class="check-boxes">
+							<%= r.check_box(:weightlifting_focus) %> <strong>Weightlifting Focus</strong>
+							<%= r.check_box(:metcon_focus) %> <strong>Metcon Focus</strong>
+						</div>
+						<div class="ratings">
+							<h4>Please give a rating (1-5)</h4>
+							<p>
+							<%= r.number_field :programming, within: 1...6 %>  
+							<strong>Programming</strong>
+							<%= r.number_field :facility, within: 1...6 %>  
+							<strong>Facility</strong>
+							<%= r.number_field :community, within: 1...6 %>  
+							<strong>Community</strong>
+							</p>
+							<p>
+							<%= r.number_field :value, within: 1...6 %>  
+							<strong>Value</strong>
+							<%= r.number_field :schedule, within: 1...6 %>  
+							<strong>Schedule</strong>
+							<%= r.number_field :trainers, within: 1...6 %>  
+							<strong>Trainers</strong>
+							</p>
+							<div class="text-right">
+							<%= r.submit 'review', value: "Post!", class: "btn btn-primary" %>
+							</div>
+						</div>
+					<% end %>
+					<% end %>
 			</div>
-		</div>
 	</div>
 </div>
 <br>
+
 <!-- Display Reviews -->
 <div class="container">
 	<div class="row">

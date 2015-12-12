@@ -8,6 +8,28 @@
       <h2> Edit Review </h2>
       <%= r.text_area :body, class: "form-control", autofocus: true %>
       <br>
+      <div class="check-boxes">
+              <%= r.check_box(:weightlifting_focus) %> <strong>Weightlifting Focus</strong>
+              <%= r.check_box(:metcon_focus) %> <strong>Metcon Focus</strong>
+            </div>
+            <div class="ratings">
+              <h4>Please give a rating (1-5)</h4>
+              <p>
+              <%= r.number_field :programming, within: 1...6 %>  
+              <strong>Programming</strong>
+              <%= r.number_field :facility, within: 1...6 %>  
+              <strong>Facility</strong>
+              <%= r.number_field :community, within: 1...6 %>  
+              <strong>Community</strong>
+              </p>
+              <p>
+              <%= r.number_field :value, within: 1...6 %>  
+              <strong>Value</strong>
+              <%= r.number_field :schedule, within: 1...6 %>  
+              <strong>Schedule</strong>
+              <%= r.number_field :trainers, within: 1...6 %>  
+              <strong>Trainers</strong>
+              </p>
       <span class="pull-right">
         <%= r.submit 'Submit', value: "Submit", class: "btn btn-primary" %> 
         <%= link_to 'Delete', review_path, method: :delete, class: "btn btn-danger" %>

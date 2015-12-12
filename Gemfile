@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 gem 'geocoder'
 gem 'geokit-rails'
+gem 'ratyrate'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
