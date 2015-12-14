@@ -41,9 +41,9 @@ class GymsController < ApplicationController
       @avg_prog_review = @reviews.programming.average(:programming).round(2)
     end
 
-    weightlifting = Review.count(:conditions => {:weightlifting => "true"})
+    weightlifting = Review.where(weightlifting_focus: true).count
     p weightlifting
-    metcon =  Review.count(:conditions => {:metcon => "true"})
+    metcon =  Review.where(metcon_focus: true).count
     p metcon
     if weightlifting > metcon
       @focus = "This gym focuses on weightlifting"
