@@ -5,11 +5,11 @@ class Gym < ActiveRecord::Base
 	:address => :address, :latitude => :lat, :longitude => :long 
 	after_validation :reverse_geocode, :geocode
 
-	ratyrate_rateable :programming
 
 	def self.search(search)
+
   	if search
-    	self.where('name LIKE ?', "%#{search}%")
+    	self.where('name ILIKE ?', "%#{search}%")
   	else
     	self.all
   	end

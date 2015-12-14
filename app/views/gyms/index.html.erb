@@ -31,10 +31,11 @@
   <!-- end search bar -->
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
+		<h2><%= @welcome %></h2>
 			<% @gyms.each do |gym| %>
-			<h3>
+			<h4>
 				 <%= link_to gym.name, gym_path(gym.id) %> 
-			</h3>
+			</h4>
 			<% end %>	
 		</div>	
 	</div>
