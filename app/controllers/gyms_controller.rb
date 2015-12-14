@@ -9,12 +9,15 @@ class GymsController < ApplicationController
       longitude = request.location.longitude 
     end 
 
-    if params[:search_name]
-      @welcome = "Search results by name"
-      @gyms = Gym.search(params[:search_name]) 
-    elsif params[:search_city]
+    if params[:search_name].present? && params[:search_city].present?
+      @welcome = "Search results by name and city"
+      @gyms = Gym.search(params[:search_name]).near(params[:search_city]) 
+    elsif params[:search_city].present?
       @welcome = "Search results by city"
       @gyms = Gym.near(params[:search_city], 50)
+    elsif params[:search_name].present?
+      @welcome = "Search results by name"
+      @gyms = Gym.search(params[:search_name])
     else
       @welcome = "Locations closest to you"
       @gyms = Gym.near([latitude, longitude], 50)
@@ -30,29 +33,17 @@ class GymsController < ApplicationController
   end
 
   def show
+    @no_reviews = "There are no reviews yet"
     @user = current_user
     @gym = Gym.find(params[:id])
     @reviews = @gym.reviews
-    @review = Review.new
-    
-    if @review.programming.blank?
-      @avg_prog_review = 0
-    else 
-      @avg_prog_review = @reviews.programming.average(:programming).round(2)
-    end
-
-    weightlifting = Review.where(weightlifting_focus: true).count
-    p weightlifting
-    metcon =  Review.where(metcon_focus: true).count
-    p metcon
-    if weightlifting > metcon
-      @focus = "This gym focuses on weightlifting"
-    elsif metcon < weightlifting
-      @focus = "This gym focuses on metcon training"
-    else 
-      @focus = "This gym offers a balance of weightlifting and metcon training"
-    end   
-    
+    @review = Review.new 
+    #maps
+    @gyms = Gym.all
+    @hash = Gmaps4rails.build_markers(@gyms) do |gym, marker|
+    marker.lat gym.lat
+    marker.lng gym.long
+end
   end
 
   def edit
