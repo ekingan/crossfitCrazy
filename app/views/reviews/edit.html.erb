@@ -13,22 +13,25 @@
               <%= r.check_box(:metcon_focus) %> <strong>Metcon Focus</strong>
             </div>
             <div class="ratings">
-              <h4>Please give a rating (1-5)</h4>
-              <p>
-              <%= r.number_field :programming, within: 1...6 %>  
-              <strong>Programming</strong>
-              <%= r.number_field :facility, within: 1...6 %>  
-              <strong>Facility</strong>
-              <%= r.number_field :community, within: 1...6 %>  
-              <strong>Community</strong>
-              </p>
-              <p>
-              <%= r.number_field :value, within: 1...6 %>  
-              <strong>Value</strong>
-              <%= r.number_field :schedule, within: 1...6 %>  
-              <strong>Schedule</strong>
-              <%= r.number_field :trainers, within: 1...6 %>  
-              <strong>Trainers</strong>
+              <div class="ratings">
+              <div class="table-responsive">
+                <div class="table table-condensed">
+                  <table style="width:100%">
+                    <tr>
+                      <td><strong>Programming</strong></td>
+                      <td><strong>Community</strong></td>
+                      <td><strong>Facility</strong></td>
+                      <td><strong>Value</strong></td>
+                    </tr>
+                    <tr>
+                      <td><div id="star-rating-pro"></div> </td>
+                      <td><div id="star-rating-com"></div> </td>
+                      <td><div id="star-rating-fac"></div> </td>
+                      <td><div id="star-rating-val"></div> </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
               </p>
       <span class="pull-right">
         <%= r.submit 'Submit', value: "Submit", class: "btn btn-primary" %> 
@@ -37,3 +40,30 @@
     <% end %>
   </div>
 </div>
+
+<!-- script for making rating on stars -->
+<script>
+  $('#star-rating-pro').raty({
+    path: '/assets/', 
+    scoreName: 'review[programming]'
+  });
+</script>
+<script>
+  $('#star-rating-fac').raty({
+    path: '/assets/', 
+    scoreName: 'review[facility]'
+  });
+</script>
+<script>
+  $('#star-rating-val').raty({
+    path: '/assets/', 
+    scoreName: 'review[value]'
+  });
+</script>
+<script>
+  $('#star-rating-com').raty({
+    path: '/assets/', 
+    scoreName: 'review[community]'
+  });
+</script>
+<!-- Script for displaying rating -->

@@ -10,10 +10,13 @@ class GymsController < ApplicationController
     end 
 
     if params[:search_name]
+      @welcome = "Search results by name"
       @gyms = Gym.search(params[:search_name]) 
     elsif params[:search_city]
+      @welcome = "Search results by city"
       @gyms = Gym.near(params[:search_city], 50)
     else
+      @welcome = "Locations closest to you"
       @gyms = Gym.near([latitude, longitude], 50)
       p @gyms
       p request.location
@@ -31,6 +34,25 @@ class GymsController < ApplicationController
     @gym = Gym.find(params[:id])
     @reviews = @gym.reviews
     @review = Review.new
+    
+    if @review.programming.blank?
+      @avg_prog_review = 0
+    else 
+      @avg_prog_review = @reviews.programming.average(:programming).round(2)
+    end
+
+    weightlifting = Review.count(:conditions => {:weightlifting => "true"})
+    p weightlifting
+    metcon =  Review.count(:conditions => {:metcon => "true"})
+    p metcon
+    if weightlifting > metcon
+      @focus = "This gym focuses on weightlifting"
+    elsif metcon < weightlifting
+      @focus = "This gym focuses on metcon training"
+    else 
+      @focus = "This gym offers a balance of weightlifting and metcon training"
+    end   
+    
   end
 
   def edit
@@ -56,6 +78,7 @@ class GymsController < ApplicationController
 
   def destroy
   end
+
 
   private
 
