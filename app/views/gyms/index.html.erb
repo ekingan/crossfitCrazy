@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id='index'>
 	<div class="row">
 		<div class="col-md-6-offset-2">
 <!-- search bars -->
@@ -23,12 +23,33 @@
 	</div>
   <!-- end search bar -->
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-6 col-md-offset-2">
 		<h2><%= @welcome %></h2>
-			<% @gyms.each do |gym| %>
-			<h4>
-				 <%= link_to gym.name, gym_path(gym.id) %> 
-			</h4>
+		<% @gyms.each do |gym| %>
+			<div class="table-responsive">
+				<div class="table table-condensed">
+					<table style="width:100%">
+			  		<tr> 
+			  			<td><h4><%= link_to gym.name, gym_path(gym.id) %></h4></td>
+			  			<td align="right"><%= gym.distance_to(request.location) %> miles </td>
+			  		</tr>
+			  		<tr>
+			  			<td><%= gym.address %></td>
+			  			<td></td>
+			  		</tr>
+			  		<tr>
+			  			<td><%= gym.website %></td>
+			  			<td align="right"><em><%= gym.reviews.count %> Reviews</em></td>
+			  		</tr>
+			  	</table>
+			  </div>
+			 </div>
+
+
+			  		
+
+
+
 			<% end %>	
 		</div>	
 	</div>

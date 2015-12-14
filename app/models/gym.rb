@@ -9,9 +9,8 @@ class Gym < ActiveRecord::Base
 		if reviews.none?
 		  val = 0
 		else 
-		  val = reviews.average(attribute).round(2)
+		  val = reviews.average(attribute).round(2).to_i
 		end
-
 		return val
 	end
 

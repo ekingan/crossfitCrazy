@@ -1,7 +1,8 @@
 <!-- Gym show  -->
+<div id="show">
 <div class="container">
 	<div class="row">
-		<div class="col-md-7">
+		<div class="col-md-6">
 			<h3><%=@gym.name%></h3>
 				<h4><%= @gym.address %></h4>
 				<h4><%= @gym.website %></h4>
@@ -34,17 +35,19 @@
 			<div style='width: 800px;'>
   			<div id="map" style='width: 550px; height: 250px;'></div>
 			</div>
+			<p>
 				<!-- put image here -->
 				<% if @user %>
-				 <span class="pull-right"><%= link_to 'Edit Gym', edit_gym_path, class: 'btn btn-primary' %></span>
+				 <span class="pull-left"><%= link_to 'Improve Gym Info', edit_gym_path, class: 'btn btn-primary' %></span>
 		  	<% end %>
 		  	<br>
 		  	<br>
 	 	</div>
 		<br>
+
 <!-- New review form -->
 		<% if @user %>
-		<div class="col-md-5 well">
+		<div class="col-md-6 well">
 				<h4 class="text-center">New Review</h4>
 					<%= form_for @review do |r| %>
 						<%= r.hidden_field :gym_id, :value => @gym.id %>
@@ -90,17 +93,18 @@
 					<% end %>
 			</div>
 	</div>
-</div>
 <br>
 <!-- end new review form -->
 
 <!-- Display Reviews -->
-<% if @reviews.count < 1  %>
-<h2><%= @no_reviews %></h2>
-<% else %>
+
 <div class="container">
 	<div class="row">
+	
 		<div class="col-md-6 col-md-offset-2">
+			<% if @reviews.count < 1  %>
+			<h3><%= @no_reviews %></h3>
+			<% else %>
 			<% @reviews.reverse.each do |review|  %>
 			<ul class='list-unstyled'>
 				<li class='list-unstyled'>
@@ -141,6 +145,8 @@
 	  </div>
 	</div>
 </div>
+</div>
+
 <!-- script for making rating on stars -->
 <script>
 	$('#star-rating-pro').raty({
@@ -212,7 +218,7 @@
       "lat": <%= @gym.lat %>,
       "lng": <%= @gym.long %>,
       "picture": {
-        "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+        "url": "http://google-maps-icons.googlecode.com/files/gym.png",
         "width":  32,
         "height": 32
       },
@@ -221,6 +227,7 @@
   ]);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
+  handler.getMap().setZoom(14);
 });
 </script>
 <script>

@@ -1,6 +1,5 @@
 class GymsController < ApplicationController
   def index
-    p request.location.latitude
     if request.location.latitude == 0.0
       latitude = 37.774929
       longitude = -122.419416
@@ -33,7 +32,7 @@ class GymsController < ApplicationController
   end
 
   def show
-    @no_reviews = "There are no reviews yet"
+    @no_reviews = "There are no reviews yet, sign up to write one!"
     @user = current_user
     @gym = Gym.find(params[:id])
     @reviews = @gym.reviews
