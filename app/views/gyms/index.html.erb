@@ -1,4 +1,4 @@
-<div id="index">
+<body id="index">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
@@ -42,7 +42,7 @@
 					  			<td></td>
 					  		</tr>
 					  		<tr>
-					  			<td><h4><%= link_to gym.website, "http://#{gym.website}", :target => "_blank"%><h4></td>
+					  			<td><h4><%= link_to "#{gym.website}", "http://#{gym.website}", :target => "_blank"%><h4></td>
 					  			<td align='right'><em><%= "#{gym.reviews.length} reviews" %></em><br></td>
 					  		</tr>
 					  		<table>
@@ -67,7 +67,7 @@
 			</div>	
 		</div>
 	</div>
-</div>
+</body>
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
