@@ -28,20 +28,20 @@
 			<h2><strong><%= @welcome %></strong></h2>
 			<% @gyms.each do |gym| %>
 				<div class="table-responsive">
-					<div class="table table-condensed">
+					<div class="table table-condensed table-striped table-hover">
 						<table style="width:100%">
 				  		<tr> 
-				  			<td><h4><%= link_to gym.name, gym_path(gym.id) %></h4></td>
+				  			<td><h3><%= link_to gym.name, gym_path(gym.id) %></h3></td>
 								<% if params[:search_name].blank? && params[:search_city].blank? %>
 				  				<td align="right"><%= gym.distance.round(2) %> miles </td>
 				  			<% end %>
 				  		</tr>
 				  		<tr>
-				  			<td><%= gym.address %></td>
+				  			<td><h4><%= gym.address %><h4></td>
 				  			<td></td>
 				  		</tr>
 				  		<tr>
-				  			<td><%= gym.website %></td>
+				  			<td><h4><%= gym.website %><h4></td>
 				  			<td align='right'><em><%= "#{gym.reviews.length} reviews" %></em><br></td>
 				  		</tr>
 				  		<table>
@@ -59,6 +59,7 @@
 				  		</tr>
 						</table>
 						</table>
+						<hr>
 				  </div>
 				 </div>
 				<% end %>	
