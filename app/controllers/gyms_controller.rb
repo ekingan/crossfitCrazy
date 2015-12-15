@@ -1,5 +1,7 @@
 class GymsController < ApplicationController
   def index
+    p request.inspect
+    p request.location
     if request.location.latitude == 0.0
       latitude = 37.774929
       longitude = -122.419416
@@ -19,9 +21,8 @@ class GymsController < ApplicationController
       @gyms = Gym.search(params[:search_name])
     else
       @welcome = "Locations closest to you"
-      @gyms = Gym.near([latitude, longitude], 50)
-      p @gyms
-      p request.location
+      @gyms = Gym.near([latitude, longitude], 25)
+      
     end
   end
 

@@ -145,17 +145,18 @@
 	  </div>
 	</div>
 </div>
-</div>
+
 
 <!-- script for making rating on stars -->
 <script>
 	$('#star-rating-pro').raty({ 
+		path: '/assets/', 
 		scoreName: 'review[programming]'
 	});
 </script>
 <script>
 	$('#star-rating-fac').raty({
-		path: '', 
+		path: '/assets/', 
 		scoreName: 'review[facility]'
 	});
 </script>
@@ -174,7 +175,7 @@
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		path: '',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -183,7 +184,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -201,7 +202,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		path: '/assets/',
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -232,4 +233,4 @@
 <script>
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
 </script>
-
+</div>

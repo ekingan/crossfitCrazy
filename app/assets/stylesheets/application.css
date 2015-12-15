@@ -28,7 +28,10 @@ td {
 	background-position: top;
 }
 #show {
-	background-image: url("/assets/burpee.jpg");
+	background-image: url("/assets/plates.jpg");
 	background-position: top;
+}
+h1 { 
+	color: #666666 ;
 }
 
