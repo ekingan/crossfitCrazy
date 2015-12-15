@@ -19,6 +19,15 @@ td, tr {
  	background-repeat: no-repeat;
  	background-attachment: fixed;
  	background-size: cover;
+ 	-webkit-background-size: 100% auto;
+
+	-moz-background-size: 100% auto;
+
+	-ms-background-size: 100% auto;
+
+	-o-background-size: 100% auto;
+
+	background-size: 100% auto;
 
 }
 #show {
@@ -27,6 +36,15 @@ td, tr {
  	background-repeat: no-repeat;
  	background-attachment: fixed;
  	background-size: cover;
+ 	-webkit-background-size: 100% auto;
+
+	-moz-background-size: 100% auto;
+
+	-ms-background-size: 100% auto;
+
+	-o-background-size: 100% auto;
+
+	background-size: 100% auto;
 
 }
 .navbar-default {
