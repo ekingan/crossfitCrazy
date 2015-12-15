@@ -34,7 +34,7 @@ class GymsController < ApplicationController
   end
 
   def show
-    @no_reviews = "There are no reviews yet, sign up to write one!"
+    @no_reviews = "There are no reviews yet, be the first to write one!"
     @user = current_user
     @gym = Gym.find(params[:id])
     @reviews = @gym.reviews

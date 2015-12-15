@@ -1,8 +1,8 @@
-<!-- Gym show  -->
 <div id="show">
 	<div class="container">
 		<div class="row"> <!-- row 1 -->
 			<div class="col-md-6"> <!-- column 1 -->
+			<!-- Gym show  -->
 				<h3><%=@gym.name%></h3>
 					<h4><%= @gym.address %></h4>
 					<h4><%= @gym.website %></h4>
@@ -34,7 +34,7 @@
 				</div><!-- end gym show table -->
 			<!-- 	BEGIN map -->
 			<div style='width: 800px;'>
-	  		<div id="map" style='width: 80%; height: 200px;'></div>
+	  		<div id="map" style='width: 60%; height: 200px;'></div>
 			</div><!-- END map -->
 				<% if @user %>
 				<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
@@ -42,56 +42,11 @@
 			  <% end %>
 			  <br>
 			  <br>
+			  <!-- end gym show -->
 		 	</div><!-- end column 1 -->
-			<!-- Display Reviews -->
-			<div class="col-md-6">
-				<div class="well well-sm">
-				<% if @reviews.count < 1  %>
-					<h3><%= @no_reviews %></h3>
-				<% else %>
-						<% @reviews.reverse.each do |review|  %>
-						<% user_id = review.user_id %>
-						<% author = User.find(user_id) %>
-						<ul class='list-unstyled'>
-							<li class='list-unstyled'>
-								<h5>Posted by <%= author.username %> on <%= review.created_at.strftime("%B %d, %Y") %></h5>
-								<h5><%= review.body %></h5>
-									<div class="table-responsive">
-										<div class="table table-condensed">
-											<table style="width:100%">
-									  		<tr>
-									    		<td>Programming</td>
-													<td>Community</td>
-													<td>Facility</td>
-													<td>Value</td>
-									  		</tr>
-									  		<tr>
-									  			<td><div class="star-rating-pro" data-score=<%= review.programming %>></div></td>
-													<td><div class="star-rating-com" data-score=<%= review.community %>></div></td>
-													<td><div class="star-rating-fac" data-score=<%= review.facility %>></div></td>
-													<td><div class="star-rating-val" data-score=<%= review.value %>></div></td>
-												</tr>
-											</table>
-										</div>
-									</div>
-				 				<span class="pull-right">
-				 				<% if @user %>
-		      			<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
-		      			<% end %>
-		     				</span>
-		     	</li>
-				</ul>
-				<% end %>
-				<% end %>
-		  </div> <!-- end column 2 -->
-		 </div> <!-- end of well -->
-	  <!-- end of reviews show -->
-	</div><!-- end row 1 -->
-
-	<!-- New review form -->
-		<div class="row"> <!-- row 2 -->
-			<% if @user %>
-			<div class="col-md-6 well"> <!-- column 1 row 2 -->
+		 	<!-- NEW REVIEW FORM -->
+			<% if @user %> 
+			<div class="col-md-6 well"> <!-- column 2 row 1 -->
 				<h5 class="text-center">Write a Review</h5>
 					<%= form_for @review do |r| %>
 						<%= r.hidden_field :gym_id, :value => @gym.id %>
@@ -133,13 +88,60 @@
 				<div class="text-right">
 				<%= r.submit 'review', value: "Post!", class: "btn btn-primary btn-sm" %>
 				</div>
-			</div> <!-- end of row 2 col 1 -->
+		</div><!-- END OF COL 2 ROW 1 -->
+		<!-- END OF NEW REVIEW FORM -->
+	</div><!-- end row 1 -->
+	<div class="row"> <!-- row 2 -->
+		<!-- Display Reviews -->
+		<div class="col-md-6 col-md-offset-3">
+			<div class="well well-sm">
+			<% if @reviews.count < 1  %>
+				<h3><%= @no_reviews %></h3>
+				<% else %>
+					<% @reviews.reverse.each do |review|  %>
+					<% user_id = review.user_id %>
+						<% author = User.find(user_id) %>
+					<ul class='list-unstyled'>
+						<li class='list-unstyled'>
+							<h5>Posted by <%= author.username %> on <%= review.created_at.strftime("%B %d, %Y") %></h5>
+							<h5><%= review.body %></h5>
+								<div class="table-responsive">
+									<div class="table table-condensed">
+										<table style="width:100%">
+								  		<tr>
+								    		<td>Programming</td>
+												<td>Community</td>
+												<td>Facility</td>
+												<td>Value</td>
+								  		</tr>
+								  		<tr>
+								  			<td><div class="star-rating-pro" data-score=<%= review.programming %>></div></td>
+												<td><div class="star-rating-com" data-score=<%= review.community %>></div></td>
+												<td><div class="star-rating-fac" data-score=<%= review.facility %>></div></td>
+												<td><div class="star-rating-val" data-score=<%= review.value %>></div></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+				 				<span class="pull-right">
+				 				<% if @user %>
+		      			<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
+		      			<% end %>
+		     				</span>
+		     	</li>
+				</ul>
+				<% end %>
+				<% end %>
+		  </div> <!-- END WELL -->
+		 </div> <!-- END COL-->
+	  <!-- end of reviews show -->	
+	</div> <!-- end of row 2 col 1 -->
 		<% end %>
 		<% end %>
-		</div><!-- end of row 2 -->
+		</div>
 	</div><!-- end of container -->
 </div> <!-- end of id show -->
-<!-- end new review form -->
+
 
 
 
