@@ -32,7 +32,8 @@
 						<table style="width:100%">
 				  		<tr> 
 				  			<td><h4><%= link_to gym.name, gym_path(gym.id) %></h4></td>
-				  			<td align="right"><%= gym.distance_to(request.location) %> miles </td>
+				  			
+				  			<td align="right"><%= gym.distance.round(2) %> miles </td>
 				  		</tr>
 				  		<tr>
 				  			<td><%= gym.address %></td>

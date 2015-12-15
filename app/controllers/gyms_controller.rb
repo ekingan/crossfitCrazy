@@ -1,13 +1,13 @@
 class GymsController < ApplicationController
   def index
-    p request.inspect
     p request.location
     if request.location.latitude == 0.0
-      latitude = 37.774929
-      longitude = -122.419416
+      @latitude = 37.774929
+      @longitude = -122.419416
     else
-      latitude = request.location.latitude
-      longitude = request.location.longitude 
+      @latitude = request.location.latitude
+      @longitude = request.location.longitude 
+      
     end 
 
     if params[:search_name].present? && params[:search_city].present?
@@ -20,10 +20,11 @@ class GymsController < ApplicationController
       @welcome = "Search results by name"
       @gyms = Gym.search(params[:search_name])
     else
-      @welcome = "Locations closest to you"
-      @gyms = Gym.near([latitude, longitude], 25)
-      
+      @welcome = "Locations close to you"
+      @gyms = Gym.near([@latitude, @longitude], 20)
     end
+
+
   end
 
   def new
