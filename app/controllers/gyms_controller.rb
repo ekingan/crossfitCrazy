@@ -14,7 +14,7 @@ class GymsController < ApplicationController
       @welcome = "Search results by name and city"
       @gyms = Gym.search(params[:search_name]).near(params[:search_city]) 
     elsif params[:search_city].present?
-      @welcome = "Search results by city"
+      @welcome = "Gyms near #{params[:search_city]}"
       @gyms = Gym.near(params[:search_city], 50)
     elsif params[:search_name].present?
       @welcome = "Search results by name"

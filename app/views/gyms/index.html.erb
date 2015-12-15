@@ -25,43 +25,44 @@
 	  <!-- end search bar -->
 		<div class="row">
 			<div class="col-md-6 col-md-offset-2">
-			<h2><strong><%= @welcome %></strong></h2>
-			<% @gyms.each do |gym| %>
-				<div class="table-responsive">
-					<div class="table table-condensed table-striped table-hover">
-						<table style="width:100%">
-				  		<tr> 
-				  			<td><h3><%= link_to gym.name, gym_path(gym.id) %></h3></td>
-								<% if params[:search_name].blank? && params[:search_city].blank? %>
-				  				<td align="right"><%= gym.distance.round(2) %> miles </td>
-				  			<% end %>
-				  		</tr>
-				  		<tr>
-				  			<td><h4><%= gym.address %><h4></td>
-				  			<td></td>
-				  		</tr>
-				  		<tr>
-				  			<td><h4><%= gym.website %><h4></td>
-				  			<td align='right'><em><%= "#{gym.reviews.length} reviews" %></em><br></td>
-				  		</tr>
-				  		<table>
-				  		<tr>
-				    		<td><strong>Programming</strong></td>
-								<td><strong>Community</strong></td>
-								<td><strong>Facility</strong></td>
-								<td><strong>Value</strong></td>
-				  		</tr>
-				  		<tr>
-				   			<td><div class="star-rating-pro" data-score=<%= gym.avg_rating(:programming) %>></div></td>
-								<td><div class="star-rating-com" data-score=<%= gym.avg_rating(:community) %>></div></td>
-								<td><div class="star-rating-fac" data-score=<%= gym.avg_rating(:facility) %>></div></td>
-								<td><div class="star-rating-val" data-score=<%= gym.avg_rating(:value) %>></div></td>
-				  		</tr>
+				<h2><%= @welcome %></h2>
+				<% @gyms.each do |gym| %>
+				<div class="well well-sm">
+					<div class="table-responsive">
+						<div class="table table-condensed table-striped table-hover">
+							<table style="width:100%">
+					  		<tr> 
+					  			<td><h3><%= link_to gym.name, gym_path(gym.id) %></h3></td>
+									<% if params[:search_name].blank? && params[:search_city].blank? %>
+					  				<td align="right"><%= gym.distance.round(2) %> miles </td>
+					  			<% end %>
+					  		</tr>
+					  		<tr>
+					  			<td><h4><%= gym.address %><h4></td>
+					  			<td></td>
+					  		</tr>
+					  		<tr>
+					  			<td><h4><%= gym.website %><h4></td>
+					  			<td align='right'><em><%= "#{gym.reviews.length} reviews" %></em><br></td>
+					  		</tr>
+					  		<table>
+					  		<tr>
+					    		<td><strong>Programming</strong></td>
+									<td><strong>Community</strong></td>
+									<td><strong>Facility</strong></td>
+									<td><strong>Value</strong></td>
+					  		</tr>
+					  		<tr>
+					   			<td><div class="star-rating-pro" data-score=<%= gym.avg_rating(:programming) %>></div></td>
+									<td><div class="star-rating-com" data-score=<%= gym.avg_rating(:community) %>></div></td>
+									<td><div class="star-rating-fac" data-score=<%= gym.avg_rating(:facility) %>></div></td>
+									<td><div class="star-rating-val" data-score=<%= gym.avg_rating(:value) %>></div></td>
+					  		</tr>
+							</table>
 						</table>
-						</table>
-						<hr>
-				  </div>
+					</div>
 				 </div>
+				</div>
 				<% end %>	
 			</div>	
 		</div>
@@ -70,7 +71,7 @@
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -79,7 +80,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -88,7 +89,7 @@
 </script>
 <script>
 	$('.star-rating-val').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -97,7 +98,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');

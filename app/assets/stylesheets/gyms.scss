@@ -4,6 +4,7 @@
 
 body {
 	padding-top: 40px;
+	background-color: #2b333b;
 }
 table,
 td, tr {
@@ -14,18 +15,18 @@ td, tr {
 
 #index {
 	background-image: url(image_path('kettlebells.jpg'));
- 	background-position: top;
+ 	background-position: center center;
  	background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+ 	background-attachment: fixed;
+ 	background-size: cover;
 
 }
 #show {
 	background-image: url(image_path('handstand.jpg'));
-	background-position: bottom;
-	background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+	background-position: center center;
+ 	background-repeat: no-repeat;
+ 	background-attachment: fixed;
+ 	background-size: cover;
 
 }
 .navbar-default {
@@ -34,4 +35,7 @@ td, tr {
 }
 .navbar-default .navbar-brand {
   color: #ebebeb;
+}
+.well {
+	background-color: rgba(43,51,59,.3);
 }
