@@ -1,3 +1,28 @@
 // Place all the styles related to the gyms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	padding-top: 60px;
+}
+table {
+	background-color: dark grey;
+}
+td {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+#index {
+	background-image: url(image_path('kettlebells2.jpg'));
+ 	background-position: top;
+
+}
+#show {
+	background-image: url(image_path('plates.jpg'));
+	background-position: top;
+
+}
+h2 { 
+	text-shadow: 0px 0px;
+	color: #cccccc ;
+}

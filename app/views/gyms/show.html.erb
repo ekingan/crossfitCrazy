@@ -48,7 +48,7 @@
 <!-- New review form -->
 		<% if @user %>
 		<div class="col-md-6 well">
-				<h4 class="text-center">New Review</h4>
+				<h4 class="text-center">Write a Review</h4>
 					<%= form_for @review do |r| %>
 						<%= r.hidden_field :gym_id, :value => @gym.id %>
 						<%= r.hidden_field :user_id, :value => @user.id %>
@@ -233,4 +233,4 @@
 <script>
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
 </script>
-</div>
+

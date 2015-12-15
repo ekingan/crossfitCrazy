@@ -13,25 +13,4 @@
  *= require_tree .
  *= require_self
  */
-body {
-	padding-top: 60px;
-}
-table {
-	background-color: dark grey;
-}
-td {
-	padding-right: 10px;
-	padding-left: 10px;
-}
-#index {
-	background-image: url("/assets/kettlebells2.jpg");
-	background-position: top;
-}
-#show {
-	background-image: url("/assets/plates.jpg");
-	background-position: top;
-}
-h1 { 
-	color: #666666 ;
-}
 
