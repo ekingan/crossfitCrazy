@@ -4,55 +4,53 @@
 	<br>
 	<div class="container">
 		<div class="row"><!-- row 1 -->
+		<!-- Gym show  -->
 			<div class="col-md-6 col-md-offset-1"> <!-- column 1 -->
-			<!-- Gym show  -->
 				<h3><%=@gym.name%></h3>
 					<h4><%= @gym.address %></h4>
 					<h4><%= @gym.website %></h4>
 					<h4><%= @gym.phone %></h4>
-					<h5><%= @gym.w_vs_m %></h5>	
-				<div class="table-responsive">
-					<div class="table table-condensed">
-						<table style="width:100%">
-				  		<tr>
-				    		<td>Programming</td>
-								<td>Community</td>
-								<td>Facility</td>
-								<td>Value</td>
-				  		</tr>
-				  		<tr>
-				   			<td><div class="star-rating-pro" data-score=<%= @gym.avg_rating(:programming) %>></div></td>
-								<td><div class="star-rating-com" data-score=<%= @gym.avg_rating(:community) %>></div></td>
-								<td><div class="star-rating-fac" data-score=<%= @gym.avg_rating(:facility) %>></div></td>
-								<td><div class="star-rating-val" data-score=<%= @gym.avg_rating(:value) %>></div></td>
-				  		</tr>
-				  		<tr>
-								<td><em><%= "#{@gym.reviews.length} reviews" %></em><br></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</table>
-					</div>
-				</div><!-- end gym show table -->
-			<!-- 	BEGIN map -->
-			<div style='width: 800px;'>
-	  		<div id="map" style='width: 90%; height: 300px;'></div>
-			</div><!-- END map -->
-				<% if @user %>
-				<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
-				</span>
+					<h5><%= @gym.w_vs_m %></h5>
+					<div class="table-responsive">
+						<div class="table table-condensed">
+							<table style="width:100%">
+				  			<tr>
+					    		<td>Programming</td>
+									<td>Community</td>
+									<td>Facility</td>
+									<td>Value</td>
+					  		</tr>
+					  		<tr>
+					   			<td><div class="star-rating-pro" data-score=<%= @gym.avg_rating(:programming) %>></div></td>
+									<td><div class="star-rating-com" data-score=<%= @gym.avg_rating(:community) %>></div></td>
+									<td><div class="star-rating-fac" data-score=<%= @gym.avg_rating(:facility) %>></div></td>
+									<td><div class="star-rating-val" data-score=<%= @gym.avg_rating(:value) %>></div></td>
+					  		</tr>
+					  		<tr>
+									<td><em><%= "#{@gym.reviews.length} reviews" %></em><br></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+					</div><!-- end gym show table -->
+					<!-- 	BEGIN map -->
+	  				<div id="map" style='width: 100%; height: 300px;'></div>
+					<!-- END map -->
+					<% if @user %>
+					<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
+					</span>
 			  <% end %>
-			  <br>
-			  <br>
-			  <!-- end gym show -->
-		 	</div><!-- end column 1 -->
-		 </div><!-- END OF ROW 1 -->
-		 	<!-- NEW REVIEW FORM -->
-			
-			<% if @user %> 
+			 </div><!-- end column 1 -->
+		</div><!-- END OF ROW 1 -->
+		<br>
+		<br>
+		<!-- end gym show -->
+		<!-- NEW REVIEW FORM -->
+		<% if @user %>
 		<div class="row">
-			<div class="col-md-6 col-md-offset-2 well"> <!-- column 2 row 1 -->
+			<div class="col-md-6 col-md-offset-2 well"> <!-- column 2 row 2 -->
 				<h5 class="text-center">Write a Review</h5>
 					<%= form_for @review do |r| %>
 						<%= r.hidden_field :gym_id, :value => @gym.id %>
@@ -92,20 +90,21 @@
 					</div>	
 				</div>
 				<div class="text-right">
-				<%= r.submit 'review', value: "Post!", class: "btn btn-primary btn-sm" %>
+					<%= r.submit 'review', value: "Post!", class: "btn btn-primary btn-sm" %>
 				</div>
-		</div><!-- END OF COL 2 ROW 1 -->
+			<% end %> <!-- end form -->
 		<!-- END OF NEW REVIEW FORM -->
-	</div>
-	<% end %><!-- end row 1 -->
-	<% end %>
-	<div class="row"> <!-- row 2 -->
+			</div><!-- end row 1 -->
+		</div>
+		<% end %> <!-- end of if @user -->
+
+		<div class="row"> <!-- row 3 -->
 		<!-- Display Reviews -->
-		<div class="col-md-6 col-md-offset-2">
-			<div class="well well-sm">
-			<% if @reviews.count < 1  %>
-				<h3><%= @no_reviews %></h3>
-				<% else %>
+			<div class="col-md-6 col-md-offset-2">
+				<div class="well well-sm">
+					<% if @reviews.count < 1  %>
+					<h3><%= @no_reviews %></h3>
+					<% else %>
 					<% @reviews.reverse.each do |review|  %>
 					<% user_id = review.user_id %>
 						<% author = User.find(user_id) %>
@@ -131,24 +130,20 @@
 										</table>
 									</div>
 								</div>
-				 				<span class="pull-right">
-				 				<% if @user %>
-		      			<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
-		      			<% end %>
+								<% if @user %>
+								<span class="pull-right">
+		      				<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
 		     				</span>
-		     	</li>
-				</ul>
-		  </div> <!-- END WELL -->
-		 </div> <!-- END COL-->
-	  <!-- end of reviews show -->	
-	</div> <!-- end of row 2 col 1 -->
+		     				<% end %>					
+		     		</li>
+					</ul>
+		  	</div> <!-- END WELL -->
+		 	</div> <!-- END COL-->
+	  	<!-- end of reviews show -->	
+		</div> <!-- end of row 3 col 1 -->
 		<% end %>
 		<% end %>
 </div><!-- end of container -->
-
-
-
-
 
 <!-- script for making rating on stars -->
 <script>
@@ -165,6 +160,7 @@
 </script>
 <script>
 	$('#star-rating-val').raty({
+
 		// path: '/assets/', 
 		scoreName: 'review[value]'
 	});
