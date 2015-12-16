@@ -1,7 +1,7 @@
-<body id="index">
+<div class="kettlebell-background"></div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-2">
+			<div class="col-md-6 col-md-offset-3">
 	<!-- search bars -->
 		    <div class="form-group">
 		      <div class="input-group" >
@@ -21,10 +21,10 @@
 		    </div>
 	 		 </div>
 	 		</div>
-		</div>
+	 	</div>	
 	  <!-- end search bar -->
 		<div class="row">
-			<div class="col-md-6 col-md-offset-2">
+			<div class="col-md-6 col-md-offset-3">
 				<h2><%= @welcome %></h2>
 				<% @gyms.each do |gym| %>
 				<div class="well well-sm">
@@ -71,7 +71,7 @@
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -80,7 +80,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -89,7 +89,7 @@
 </script>
 <script>
 	$('.star-rating-val').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -98,7 +98,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');

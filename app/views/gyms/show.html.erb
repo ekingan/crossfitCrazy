@@ -1,7 +1,7 @@
-<body id="show">
-<span class="pull-right"><%= link_to 'Back to Results', :back, class: 'btn btn-primary btn-sm' %>
-</span>
-	<div class="container">
+<div class="handstand-background"></div>
+	<span class="pull-right"><%= link_to 'Back to Results', :back, class: 'btn btn-primary btn-sm' %>
+	</span>
+	<div class="container container-fluid">
 		<div class="row"><!-- row 1 -->
 			<div class="col-md-6"> <!-- column 1 -->
 			<!-- Gym show  -->
@@ -141,8 +141,7 @@
 		<% end %>
 		<% end %>
 		</div>
-	</div><!-- end of container -->
-</body> <!-- end of id show -->
+</div><!-- end of container -->
 
 
 
@@ -151,32 +150,32 @@
 <!-- script for making rating on stars -->
 <script>
 	$('#star-rating-pro').raty({ 
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[programming]'
 	});
 </script>
 <script>
 	$('#star-rating-fac').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[facility]'
 	});
 </script>
 <script>
 	$('#star-rating-val').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[value]'
 	});
 </script>
 <script>
 	$('#star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[community]'
 	});
 </script>
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -185,7 +184,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -194,7 +193,7 @@
 </script>
 <script>
 	$('.star-rating-val').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -203,7 +202,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');

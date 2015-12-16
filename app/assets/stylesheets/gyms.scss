@@ -13,39 +13,29 @@ td, tr {
 
 }
 
-#index {
+.kettlebell-background {
 	background-image: url(image_path('kettlebells.jpg'));
  	background-position: center center;
  	background-repeat: no-repeat;
  	background-attachment: fixed;
  	background-size: cover;
- 	-webkit-background-size: 100% auto;
-
-	-moz-background-size: 100% auto;
-
-	-ms-background-size: 100% auto;
-
-	-o-background-size: 100% auto;
-
-	background-size: 100% auto;
-
+ 	z-index: -2;
+ 	position: fixed;
+  height: 100%;
+  width: 100%;
+ 
 }
-#show {
+.handstand-background {
 	background-image: url(image_path('handstand.jpg'));
 	background-position: center center;
  	background-repeat: no-repeat;
  	background-attachment: fixed;
  	background-size: cover;
- 	-webkit-background-size: 100% auto;
-
-	-moz-background-size: 100% auto;
-
-	-ms-background-size: 100% auto;
-
-	-o-background-size: 100% auto;
-
-	background-size: 100% auto;
-
+ 	z-index: -2;
+ 	position: fixed;
+  height: 100%;
+  width: 100%;
+	
 }
 .navbar-default {
   background-color: #2b333b;
