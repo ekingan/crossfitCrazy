@@ -1,9 +1,11 @@
 class Gym < ActiveRecord::Base
 	has_many :reviews, dependent: :destroy
+
 	
 	reverse_geocoded_by :lat, :long, 
 	:address => :address, :latitude => :lat, :longitude => :long 
 	# after_validation :reverse_geocode, :geocode
+	# after_update :all_total_ratings
 
 	def avg_rating(attribute)
 		if reviews.none?
@@ -13,6 +15,23 @@ class Gym < ActiveRecord::Base
 		end
 		return val
 	end
+
+	def all_total_ratings
+		totals = self.reviews.map { |review| review.total_rating }
+		grand_total = totals.reduce(:+)
+		self.total_rating = grand_total
+		p "in all total_ratings" * 100
+		self.save
+	end
+
+	# def best_rating(attributes)
+	# 	if reviews.none?
+	# 	  val = 0
+	# 	else 
+	# 	  val = reviews.average(attributes)
+	# 	end
+	# 	return val
+	# end
 
 	def w_vs_m
 		weightlifting = reviews.where(weightlifting_focus: true).count

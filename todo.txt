@@ -1,0 +1,22 @@
+mobile layout for stars
+modal for reviews
+paginate
+
+Get current location (around me) - 
+	on click getlocation
+	send lat/lng to server
+	respond with nearby gyms
+
+auto complete location
+	add google places api library
+	add CDN
+	attach autocomplete to input field
+	then get lat long with hidden field
+	send to controller
+	get near_bys
+
+
+
+
+
+

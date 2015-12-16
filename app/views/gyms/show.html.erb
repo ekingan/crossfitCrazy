@@ -27,7 +27,7 @@
 									<td><div class="star-rating-val" data-score=<%= @gym.avg_rating(:value) %>></div></td>
 					  		</tr>
 					  		<tr>
-									<td><em><%= "#{@gym.reviews.length} reviews" %></em><br></td>
+									<td><em><%= pluralize @gym.reviews.size, 'review'%></em><br></td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -95,7 +95,7 @@
 			</div><!-- end row 1 -->
 		</div>
 		<% end %> <!-- end of if @user -->
-
+		<% @reviews.reverse.each do |review|  %>
 		<div class="row"> <!-- row 3 -->
 		<!-- Display Reviews -->
 			<div class="col-md-6 col-md-offset-2">
@@ -103,7 +103,7 @@
 					<% if @reviews.count < 1  %>
 					<h3><%= @no_reviews %></h3>
 					<% else %>
-					<% @reviews.reverse.each do |review|  %>
+					
 					<% user_id = review.user_id %>
 						<% author = User.find(user_id) %>
 					<ul class='list-unstyled'>
@@ -139,40 +139,40 @@
 		 	</div> <!-- END COL-->
 	  	<!-- end of reviews show -->	
 		</div> <!-- end of row 3 col 1 -->
-		<% end %>
-		<% end %>
+			<% end %>
+			<% end %>
 </div><!-- end of container -->
 
 <!-- script for making rating on stars -->
 <script>
 	$('#star-rating-pro').raty({ 
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[programming]'
 	});
 </script>
 <script>
 	$('#star-rating-fac').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[facility]'
 	});
 </script>
 <script>
 	$('#star-rating-val').raty({
 
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[value]'
 	});
 </script>
 <script>
 	$('#star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[community]'
 	});
 </script>
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -181,7 +181,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -190,7 +190,7 @@
 </script>
 <script>
 	$('.star-rating-val').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -199,7 +199,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');

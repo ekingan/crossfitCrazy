@@ -3,6 +3,12 @@ class ReviewsController < ApplicationController
 	def create
 		@review = Review.new(review_params)
 			if @review.save
+        @gym = Gym.find(@review.gym_id)
+        if @gym
+          @gym.all_total_ratings
+        else 
+          puts "no gym found"
+        end
 				redirect_to :back
 			end
 	end

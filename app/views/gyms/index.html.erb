@@ -34,7 +34,7 @@
 					  		<tr> 
 					  			<td><h3><%= link_to gym.name, gym_path(gym.id) %></h3></td>
 									<% if params[:search_name].blank? && params[:search_city].blank? %>
-					  				<td align="right"><%= gym.distance.round(2) %> miles </td>
+					  				<td align="right"> </td>
 					  			<% end %>
 					  		</tr>
 					  		<tr>
@@ -43,7 +43,7 @@
 					  		</tr>
 					  		<tr>
 					  			<td><h4><%= link_to "#{gym.website}", "http://#{gym.website}", :target => "_blank"%><h4></td>
-					  			<td align='right'><em><%= "#{gym.reviews.length} reviews" %></em><br></td>
+					  			<td align='right'><em><%= pluralize gym.reviews.size, 'review'%></em><br></td>
 					  		</tr>
 					  		<table>
 					  		<tr>
@@ -71,7 +71,7 @@
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -80,7 +80,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -89,7 +89,7 @@
 </script>
 <script>
 	$('.star-rating-val').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -98,7 +98,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');

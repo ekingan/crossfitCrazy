@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211225831) do
+ActiveRecord::Schema.define(version: 20151216225309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,9 +32,12 @@ ActiveRecord::Schema.define(version: 20151211225831) do
     t.string   "website"
     t.string   "address"
     t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "total_rating", default: 0
   end
+
+  add_index "gyms", ["total_rating"], name: "index_gyms_on_total_rating", using: :btree
 
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id"
@@ -73,16 +76,17 @@ ActiveRecord::Schema.define(version: 20151211225831) do
     t.string   "body"
     t.integer  "gym_id"
     t.integer  "user_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "programming"
-    t.integer  "facility"
-    t.integer  "community"
-    t.integer  "value"
-    t.integer  "schedule"
-    t.integer  "trainers"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "programming",         default: 0
+    t.integer  "facility",            default: 0
+    t.integer  "community",           default: 0
+    t.integer  "value",               default: 0
+    t.integer  "trainers",            default: 0
     t.boolean  "weightlifting_focus"
     t.boolean  "metcon_focus"
+    t.integer  "total_rating"
+    t.integer  "schedule",            default: 0
   end
 
   add_index "reviews", ["gym_id"], name: "index_reviews_on_gym_id", using: :btree
