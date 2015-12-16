@@ -19,9 +19,10 @@ class GymsController < ApplicationController
     elsif params[:search_name].present?
       @welcome = "Search results by name"
       @gyms = Gym.search(params[:search_name])
-    else
+     else
       @welcome = "Locations close to you"
       @gyms = Gym.near([@latitude, @longitude], 20)
+      # @gyms = Gym.includes(:reviews).order("reviews.created_at desc")
     end
 
 
