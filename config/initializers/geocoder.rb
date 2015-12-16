@@ -5,7 +5,7 @@ Geocoder.configure(
   # :lookup => :yandex,
 
   # IP address geocoding service (see below for supported options):
-  :ip_lookup => :maxmind
+  :ip_lookup => :maxmind{:service => :city})
 
   # to use an API key:
   # :api_key => "...",
