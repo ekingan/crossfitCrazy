@@ -34,7 +34,7 @@
 					  		<tr> 
 					  			<td><h3><%= link_to gym.name, gym_path(gym.id) %></h3></td>
 									<% if params[:search_name].blank? && params[:search_city].blank? %>
-					  				<td align="right"> miles </td>
+					  				<td align="right"><%= gym.distance.round(2) %> miles </td>
 					  			<% end %>
 					  		</tr>
 					  		<tr>

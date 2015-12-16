@@ -1,9 +1,10 @@
 <div class="handstand-background"></div>
-	<span class="pull-right"><%= link_to 'Back to Results', :back, class: 'btn btn-primary btn-sm' %>
+	<span class="pull-left"><%= link_to 'Back to Results', :back, class: 'btn btn-primary btn-sm' %>
 	</span>
-	<div class="container container-fluid">
+	<br>
+	<div class="container">
 		<div class="row"><!-- row 1 -->
-			<div class="col-md-6"> <!-- column 1 -->
+			<div class="col-md-6 col-md-offset-1"> <!-- column 1 -->
 			<!-- Gym show  -->
 				<h3><%=@gym.name%></h3>
 					<h4><%= @gym.address %></h4>
@@ -36,7 +37,7 @@
 				</div><!-- end gym show table -->
 			<!-- 	BEGIN map -->
 			<div style='width: 800px;'>
-	  		<div id="map" style='width: 50%; height: 200px;'></div>
+	  		<div id="map" style='width: 90%; height: 300px;'></div>
 			</div><!-- END map -->
 				<% if @user %>
 				<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
@@ -46,9 +47,12 @@
 			  <br>
 			  <!-- end gym show -->
 		 	</div><!-- end column 1 -->
+		 </div><!-- END OF ROW 1 -->
 		 	<!-- NEW REVIEW FORM -->
+			
 			<% if @user %> 
-			<div class="col-md-6 well"> <!-- column 2 row 1 -->
+		<div class="row">
+			<div class="col-md-6 col-md-offset-2 well"> <!-- column 2 row 1 -->
 				<h5 class="text-center">Write a Review</h5>
 					<%= form_for @review do |r| %>
 						<%= r.hidden_field :gym_id, :value => @gym.id %>
@@ -93,9 +97,10 @@
 		</div><!-- END OF COL 2 ROW 1 -->
 		<!-- END OF NEW REVIEW FORM -->
 	</div><!-- end row 1 -->
+
 	<div class="row"> <!-- row 2 -->
 		<!-- Display Reviews -->
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-6 col-md-offset-2">
 			<div class="well well-sm">
 			<% if @reviews.count < 1  %>
 				<h3><%= @no_reviews %></h3>
@@ -140,7 +145,6 @@
 	</div> <!-- end of row 2 col 1 -->
 		<% end %>
 		<% end %>
-		</div>
 </div><!-- end of container -->
 
 
