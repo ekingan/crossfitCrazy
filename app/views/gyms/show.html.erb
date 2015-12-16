@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row"><!-- row 1 -->
 		<!-- Gym show  -->
-			<div class="col-md-6 col-md-offset-2"> <!-- column 1 -->
+			<div class="col-md-6"> <!-- column 1 -->
 				<h3><%=@gym.name%></h3>
 					<h4><%= @gym.address %></h4>
 					<h4><%= @gym.website %></h4>
@@ -43,14 +43,12 @@
 					</span>
 			  <% end %>
 			 </div><!-- end column 1 -->
-		</div><!-- END OF ROW 1 -->
 		<br>
 		<br>
 		<!-- end gym show -->
 		<!-- NEW REVIEW FORM -->
 		<% if @user %>
-		<div class="row">
-			<div class="col-md-6 col-md-offset-2 well"> <!-- column 2 row 2 -->
+			<div class="col-md-6 well"> <!-- column 2 row 2 -->
 				<h5 class="text-center">Write a Review</h5>
 					<%= form_for @review do |r| %>
 						<%= r.hidden_field :gym_id, :value => @gym.id %>
