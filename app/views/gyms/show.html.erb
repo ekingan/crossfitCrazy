@@ -1,7 +1,7 @@
 <div class="handstand-background"></div>
-	<span class="pull-right"><%= link_to 'Back to Results', :back, class: 'btn btn-primary btn-sm' %>
+	<span class="pull-left"><%= link_to 'Back to Results', :back, class: 'btn btn-primary btn-sm' %>
 	</span>
-	<div class="container container-fluid">
+	<div class="container">
 		<div class="row"><!-- row 1 -->
 			<div class="col-md-6"> <!-- column 1 -->
 			<!-- Gym show  -->
@@ -34,117 +34,67 @@
 						</table>
 					</div>
 				</div><!-- end gym show table -->
-			<!-- 	BEGIN map -->
-			<div style='width: 800px;'>
-	  		<div id="map" style='width: 50%; height: 200px;'></div>
-			</div><!-- END map -->
-				<% if @user %>
-				<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
-				</span>
-			  <% end %>
-			  <br>
-			  <br>
-			  <!-- end gym show -->
-		 	</div><!-- end column 1 -->
-		 	<!-- NEW REVIEW FORM -->
-			<% if @user %> 
-			<div class="col-md-6 well"> <!-- column 2 row 1 -->
-				<h5 class="text-center">Write a Review</h5>
-					<%= form_for @review do |r| %>
-						<%= r.hidden_field :gym_id, :value => @gym.id %>
-						<%= r.hidden_field :user_id, :value => @user.id %>
-						<%= r.text_area :body, class: "form-control", autofocus: true, placeholder: "Tell us about your experience here!" %>
+				<!-- 	BEGIN map -->
+				<div style='width: 800px;'>
+		  		<div id="map" style='width: 50%; height: 200px;'></div>
+				</div><!-- END map -->
 				<br>
-				<div class="check-boxes">
-					<div class="table-responsive">
-						<div class="table table-condensed">
-							<table style="width:80%">
-				  			<tr>
-				    			<td><%= r.check_box(:weightlifting_focus) %>Weightlifting Focus</td>
-									<td><%= r.check_box(:metcon_focus) %> Metcon Focus</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="ratings">
-				<div class="table-responsive">
-					<div class="table table-condensed">
-						<table style="width:100%">
-					  		<tr>
-					    		<td>Programming</td>
-									<td>Community</td>
-									<td>Facility</td>
-									<td>Value</td>
-					  		</tr>
-					  		<tr>
-					  			<td><div id="star-rating-pro"></div> </td>
-					  			<td><div id="star-rating-com"></div> </td>
-					  			<td><div id="star-rating-fac"></div> </td>
-					  			<td><div id="star-rating-val"></div> </td>
-				  			</tr>
-				  		</table>
-						</div>
-					</div>	
-				</div>
-				<div class="text-right">
-				<%= r.submit 'review', value: "Post!", class: "btn btn-primary btn-sm" %>
-				</div>
-		</div><!-- END OF COL 2 ROW 1 -->
-		<!-- END OF NEW REVIEW FORM -->
-	</div><!-- end row 1 -->
-	<div class="row"> <!-- row 2 -->
-		<!-- Display Reviews -->
-		<div class="col-md-6 col-md-offset-3">
-			<div class="well well-sm">
-			<% if @reviews.count < 1  %>
-				<h3><%= @no_reviews %></h3>
-				<% else %>
-					<% @reviews.reverse.each do |review|  %>
-					<% user_id = review.user_id %>
-						<% author = User.find(user_id) %>
-					<ul class='list-unstyled'>
-						<li class='list-unstyled'>
-							<h5>Posted by <%= author.username %> on <%= review.created_at.strftime("%B %d, %Y") %></h5>
-							<h5><%= review.body %></h5>
-								<div class="table-responsive">
-									<div class="table table-condensed">
-										<table style="width:100%">
-								  		<tr>
-								    		<td>Programming</td>
-												<td>Community</td>
-												<td>Facility</td>
-												<td>Value</td>
-								  		</tr>
-								  		<tr>
-								  			<td><div class="star-rating-pro" data-score=<%= review.programming %>></div></td>
-												<td><div class="star-rating-com" data-score=<%= review.community %>></div></td>
-												<td><div class="star-rating-fac" data-score=<%= review.facility %>></div></td>
-												<td><div class="star-rating-val" data-score=<%= review.value %>></div></td>
-											</tr>
-										</table>
+					<% if @user %>
+					<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
+					</span>
+				  <% end %><!-- end gym show -->
+		 	</div><!-- end column 1 -->
+			<br>
+			<br>
+			<div class="col-md-6">
+				<div class="well well-sm">
+				<% if @user %>
+				<span class="pull-right"><%= link_to 'Write a Review', new_review_path, class: 'btn btn-primary btn-sm' %>
+				</span>
+				<% end %>
+				<% if @reviews.count < 1  %>
+					<h3><%= @no_reviews %></h3>
+					<% else %>
+						<% @reviews.reverse.each do |review|  %>
+						<% user_id = review.user_id %>
+							<% author = User.find(user_id) %>
+						<ul class='list-unstyled'>
+							<li class='list-unstyled'>
+								<h5>Posted by <%= author.username %> on <%= review.created_at.strftime("%B %d, %Y") %></h5>
+								<h5><%= review.body %></h5>
+									<div class="table-responsive">
+										<div class="table table-condensed">
+											<table style="width:100%">
+									  		<tr>
+									    		<td>Programming</td>
+													<td>Community</td>
+													<td>Facility</td>
+													<td>Value</td>
+									  		</tr>
+									  		<tr>
+									  			<td><div class="star-rating-pro" data-score=<%= review.programming %>></div></td>
+													<td><div class="star-rating-com" data-score=<%= review.community %>></div></td>
+													<td><div class="star-rating-fac" data-score=<%= review.facility %>></div></td>
+													<td><div class="star-rating-val" data-score=<%= review.value %>></div></td>
+												</tr>
+											</table>
+										</div>
 									</div>
-								</div>
-				 				<span class="pull-right">
-				 				<% if @user %>
-		      			<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
-		      			<% end %>
-		     				</span>
-		     	</li>
-				</ul>
-				<% end %>
-				<% end %>
-		  </div> <!-- END WELL -->
-		 </div> <!-- END COL-->
-	  <!-- end of reviews show -->	
-	</div> <!-- end of row 2 col 1 -->
-		<% end %>
-		<% end %>
-		</div>
-</div><!-- end of container -->
-
-
-
+					 				<span class="pull-right">
+					 				<% if @user %>
+			      			<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
+			      			<% end %>
+			     				</span>
+			     		</li>
+						</ul>	
+			  </div> <!-- END WELL -->
+			 </div> <!-- END COL-->
+		  <!-- end of reviews show -->	
+		</div> <!-- end of row-->
+			<% end %>
+			<% end %>
+		
+	</div><!-- end of container -->
 
 
 <!-- script for making rating on stars -->

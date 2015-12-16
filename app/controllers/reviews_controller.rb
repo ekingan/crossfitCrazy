@@ -1,15 +1,20 @@
 class ReviewsController < ApplicationController
 
 	def create
-		@review = Review.new(review_params)
+    @gym = Gym.find(params[:gym_id])
+    @review = @gym.reviewss.new(params[:review])
+    @review.user = current_user
+		# @review = Review.new(review_params)
 			if @review.save
 				redirect_to :back
-			end
-	end
+    end
+  end
+			
 
 	def new
 		@user = current_user
-		@review = Review.new	
+		@review = Review.new
+
 	end
 
 	def edit

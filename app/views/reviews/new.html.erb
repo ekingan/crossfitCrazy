@@ -1,19 +1,49 @@
-<!-- New review form -->
 <div class="container">
-	<div class="col-md-6 col-sm-offset-2">
-		<div class="well">	
-			<h2 class="text-center">New Review</h2>
-			<% if @review_error %>
-			  <div class="alert alert-info text-center alert-danger"><%= flash[:error] %></div>
-			<% end %>
-			<%= form_for @review do |r| %>
-				<%= r.text_field :body, class: "form-control", autofocus: true %>
+	<div class="row">
+		<!-- NEW REVIEW FORM -->
+			<div class="col-md-6 well"><!-- column 2 row 1 -->  
+				<h5 class="text-center">Write a Review</h5>
+					<%= form_for @review do |r| %>
+						<%= r.hidden_field :gym_id, :value => @gym.id %>
+						<%= r.hidden_field :user_id, :value => @user.id %>
+						<%= r.text_area :body, class: "form-control", autofocus: true, placeholder: "Tell us about your experience here!" %>
 				<br>
-				<div class="text-right">
-					<%= r.submit 'review', value: "Post!", class: "btn btn-primary" %>
+				<div class="check-boxes">
+					<div class="table-responsive">
+						<div class="table table-condensed">
+							<table style="width:80%">
+				  			<tr>
+				    			<td><%= r.check_box(:weightlifting_focus) %>Weightlifting Focus</td>
+									<td><%= r.check_box(:metcon_focus) %> Metcon Focus</td>
+							</tr>
+						</table>
+					</div>
 				</div>
-			<% end %>
 			</div>
-		</div>
-	</div>
+			<div class="ratings">
+				<div class="table-responsive">
+					<div class="table table-condensed">
+						<table style="width:100%">
+					  		<tr>
+					    		<td>Programming</td>
+									<td>Community</td>
+									<td>Facility</td>
+									<td>Value</td>
+					  		</tr>
+					  		<tr>
+					  			<td><div id="star-rating-pro"></div> </td>
+					  			<td><div id="star-rating-com"></div> </td>
+					  			<td><div id="star-rating-fac"></div> </td>
+					  			<td><div id="star-rating-val"></div> </td>
+				  			</tr>
+				  		</table>
+						</div>
+					</div>	
+				</div>
+				<div class="text-right">
+				<%= r.submit 'review', value: "Post!", class: "btn btn-primary btn-sm" %>
+				</div>
+		</div><!-- END OF COL -->
+	</div><!-- END OF ROW -->
 </div>
+<% end %>		<!-- END OF NEW REVIEW FORM -->
