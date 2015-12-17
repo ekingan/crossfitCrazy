@@ -8,7 +8,7 @@
 			<div class="col-md-6"> <!-- column 1 -->
 				<h3><%=@gym.name%></h3>
 					<h4><%= @gym.address %></h4>
-					<h4><%= link_to "#{gym.website}", "#{gym.website}", :target => "_blank"%></h4>
+					<h4><%= link_to "#{@gym.website}", "http://#{@gym.website}", :target => "_blank"%></h4>
 					<h4><%= @gym.phone %></h4>
 					<h5><%= @gym.w_vs_m %></h5>
 		<div class="row">
