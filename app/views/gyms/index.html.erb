@@ -38,11 +38,11 @@
 					  			<% end %>
 					  		</tr>
 					  		<tr>
-					  			<td><h4><%= gym.address %></h4></td>
+					  			<td><%= gym.address %></td>
 					  			<td></td>
 					  		</tr>
 					  		<tr>
-					  			<td><h4><%= link_to "#{gym.website}", "http://#{gym.website}", :target => "_blank"%></h4></td>
+					  			<td><%= link_to "#{gym.website}", "#{gym.website}", :target => "_blank"%></td>
 					  			<td align='right'><em><%= pluralize gym.reviews.size, 'review'%></em><br></td>
 					  		</tr>
 					 		</table>
