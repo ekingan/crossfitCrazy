@@ -24,7 +24,7 @@ class GymsController < ApplicationController
     #   @welcome = "Locations close to you"
     #   @gyms = Gym.near([@latitude, @longitude], 20)
     else
-      @welcome = "Best Rated"
+      @welcome = "Best Rated Boxes in the World"
       @gyms = Gym.paginate(:page => params[:page], :per_page => 10).order("total_rating desc")
   
     end
