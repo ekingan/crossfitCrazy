@@ -23,7 +23,7 @@ section aims to address the intricacies of choose a gym, whether traveling or at
 >Ruby on Rails, Geolocator, Google Maps, PostgresQL, Heroku, Raty (for star ratings)
 
 ##General Approach
->I begain by getting authentication working. Then I set up my models and controllers for Gym, Review, and User.
+>I began by getting authentication working. Then I set up my models and controllers for Gym, Review, and User.
 >I made sure all views, controllers, and models were talking to each other, then I got star ratings working.
 >I spent a long time trying to style it too. Styling is still not complete.
 
