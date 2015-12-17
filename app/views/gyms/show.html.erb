@@ -41,7 +41,9 @@
 		<% if @user %>
 		<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
 		</span>
+
   <% end %>
+
  </div><!-- end column 1 -->
 		
 		<!-- end gym show -->
@@ -92,8 +94,8 @@
 			</div>
 			<% end %> <!-- end form -->
 		<!-- END OF NEW REVIEW FORM -->
-			</div><!-- end row 1 -->
-		</div>
+			</div><!-- end well -->
+		</div><!-- end col -->
 		<% end %>
 	</div> <!-- end of if @user -->
 	<% if @reviews.count < 1  %>
@@ -105,7 +107,7 @@
 		<% @reviews.reverse.each do |review|  %>
 		<div class="row"> <!-- row 3 -->
 		<!-- Display Reviews -->
-			<div class="col-md-8 col-md-offset-1">
+			<div class="col-md-12">
 				<div class="well well-sm">
 					
 					<% user_id = review.user_id %>
@@ -150,33 +152,33 @@
 <!-- script for making rating on stars -->
 <script>
 	$('#star-rating-pro').raty({ 
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[programming]'
 	});
 </script>
 <script>
 	$('#star-rating-fac').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[facility]'
 	});
 </script>
 <script>
 	$('#star-rating-val').raty({
 
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[value]'
 	});
 </script>
 <script>
 	$('#star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[community]'
 	});
 </script>
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -185,7 +187,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -194,7 +196,7 @@
 </script>
 <script>
 	$('.star-rating-val').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -203,7 +205,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
