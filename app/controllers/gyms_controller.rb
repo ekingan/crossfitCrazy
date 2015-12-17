@@ -15,7 +15,7 @@ class GymsController < ApplicationController
       @welcome = "Search results by name and city"
       @gyms = Gym.search(params[:search_name]).near(params[:search_city]).paginate(:page => params[:page], :per_page => 10) 
     elsif params[:search_city].present?
-      @welcome = "Gyms near #{params[:search_city]}"
+      @welcome = "Affiliates near #{params[:search_city]}"
       @gyms = Gym.near(params[:search_city], 50).paginate(:page => params[:page], :per_page => 10)
     elsif params[:search_name].present?
       @welcome = "Search results by name"
@@ -24,7 +24,7 @@ class GymsController < ApplicationController
     #   @welcome = "Locations close to you"
     #   @gyms = Gym.near([@latitude, @longitude], 20)
     else
-      @welcome = "Best Rated Boxes in the World"
+      @welcome = "Top Rated Affiliates"
       @gyms = Gym.paginate(:page => params[:page], :per_page => 10).order("total_rating desc")
   
     end

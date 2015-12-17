@@ -1,4 +1,3 @@
-paginate
 
 Get current location (around me) - 
 	on click getlocation
