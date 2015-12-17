@@ -41,7 +41,7 @@ class Gym < ActiveRecord::Base
       @focus = ""
     elsif weightlifting > metcon
       @focus = "This gym focuses on weightlifting"
-    elsif metcon < weightlifting
+    elsif metcon > weightlifting
       @focus = "This gym focuses on metcon training"
     else 
       @focus = "This gym offers a balance of weightlifting and metcon training"
