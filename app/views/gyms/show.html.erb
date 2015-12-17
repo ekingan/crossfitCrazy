@@ -96,14 +96,16 @@
 		</div>
 		<% end %>
 	</div> <!-- end of if @user -->
+	<% if @reviews.count < 1  %>
+		<div class="well well-sm">
+			<h3><%= @no_reviews %></h3>
+		</div>
+	<% else %>
 		<% @reviews.reverse.each do |review|  %>
 		<div class="row"> <!-- row 3 -->
 		<!-- Display Reviews -->
 			<div class="col-md-8 col-md-offset-1">
 				<div class="well well-sm">
-					<% if @reviews.count < 1  %>
-					<h3><%= @no_reviews %></h3>
-					<% else %>
 					
 					<% user_id = review.user_id %>
 						<% author = User.find(user_id) %>
