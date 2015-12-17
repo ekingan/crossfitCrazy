@@ -98,7 +98,7 @@
 	</div> <!-- end of if @user -->
 	<% if @reviews.count < 1  %>
 		<div class="well well-sm">
-			<h3><%= @no_reviews %></h3>
+			<h3><center><%= @no_reviews %></center></h3>
 		</div>
 	<% else %>
 		<% @reviews.reverse.each do |review|  %>
