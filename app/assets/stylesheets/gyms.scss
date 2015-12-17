@@ -56,24 +56,27 @@ td, th {
 .well {
 	background-color: rgba(43,51,59,.5);
 }
-
-@media 
-only screen and (max-width: 500px),
-(min-device-width: 500px) and (max-device-width 1024px) {
-	table, thead, tbody, th, td, tr {
-		display: inline-block;
-	}
-	td {
-		border: none;
-		position: relative;
-	
-	}
-	td:before {
-		position: absolute;
-		top: 5px;
-		left: 5px;
-		width: 45%;
-		padding-right: 10px;
-		white-space: nowrap;
-	}
+#infinite-scrolling {
+	padding: 0px;
 }
+
+// @media 
+// only screen and (max-width: 500px),
+// (min-device-width: 500px) and (max-device-width 1024px) {
+// 	table, thead, tbody, th, td, tr {
+// 		display: inline-block;
+// 	}
+// 	td {
+// 		border: none;
+// 		position: relative;
+	
+// 	}
+// 	td:before {
+// 		position: absolute;
+// 		top: 5px;
+// 		left: 5px;
+// 		width: 45%;
+// 		padding-right: 10px;
+// 		white-space: nowrap;
+// 	}
+// }

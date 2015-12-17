@@ -30,21 +30,24 @@
 					<em><%= pluralize @gym.reviews.size, 'review'%></em><br>
 				</div>
 			</div>
-		<!-- 	BEGIN map -->
-		<div id="map" style='width: 100%; height: 300px;'></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+				<!-- 	BEGIN map -->
+		<div id="map" style='width: 100%; height: 320px;'></div>
 		<!-- END map -->
-		<br>
+		
 		<% if @user %>
 		<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
 		</span>
   <% end %>
  </div><!-- end column 1 -->
-		<br>
-		<br>
+		
 		<!-- end gym show -->
-		<!-- NEW REVIEW FORM -->
+		<div class="col-md-6"><!-- NEW REVIEW FORM -->
 		<% if @user %>
-			<div class="col-md-6 well"> <!-- column 2 row 2 -->
+			<div class="well"> <!-- column 2 row 2 -->
 				<h5 class="text-center">Write a Review</h5>
 					<%= form_for @review do |r| %>
 						<%= r.hidden_field :gym_id, :value => @gym.id %>
@@ -91,7 +94,8 @@
 		<!-- END OF NEW REVIEW FORM -->
 			</div><!-- end row 1 -->
 		</div>
-		<% end %> <!-- end of if @user -->
+		<% end %>
+	</div> <!-- end of if @user -->
 		<% @reviews.reverse.each do |review|  %>
 		<div class="row"> <!-- row 3 -->
 		<!-- Display Reviews -->
@@ -138,38 +142,41 @@
 		</div> <!-- end of row 3 col 1 -->
 			<% end %>
 			<% end %>
+		<div id="infinite-scrolling">
+		  <%= will_paginate @gyms %>
+		</div>
 </div><!-- end of container -->
 
 <!-- script for making rating on stars -->
 <script>
 	$('#star-rating-pro').raty({ 
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[programming]'
 	});
 </script>
 <script>
 	$('#star-rating-fac').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[facility]'
 	});
 </script>
 <script>
 	$('#star-rating-val').raty({
 
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[value]'
 	});
 </script>
 <script>
 	$('#star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		scoreName: 'review[community]'
 	});
 </script>
 <!-- Script for displaying rating -->
 <script>
 	$('.star-rating-pro').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -178,7 +185,7 @@
 </script>
 <script>
 	$('.star-rating-fac').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -187,7 +194,7 @@
 </script>
 <script>
 	$('.star-rating-val').raty({
-		// path: '/assets/',
+		path: '/assets/',
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');
@@ -196,7 +203,7 @@
 </script>
 <script>
 	$('.star-rating-com').raty({
-		// path: '/assets/', 
+		path: '/assets/', 
 		readOnly: true,
 		score: function() {
 			return $(this).attr('data-score');

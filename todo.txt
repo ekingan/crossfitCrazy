@@ -1,5 +1,3 @@
-mobile layout for stars
-modal for reviews
 paginate
 
 Get current location (around me) - 

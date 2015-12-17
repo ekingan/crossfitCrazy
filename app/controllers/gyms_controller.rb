@@ -1,4 +1,5 @@
 class GymsController < ApplicationController
+  
   def index
     p request.location
     if request.location.latitude == 0.0
@@ -24,8 +25,8 @@ class GymsController < ApplicationController
     #   @gyms = Gym.near([@latitude, @longitude], 20)
     else
       @welcome = "Best Rated"
-      @gyms = Gym.order("total_rating desc").limit(20)
-     
+      @gyms = Gym.paginate(:page => params[:page], :per_page => 10).order("total_rating desc")
+  
     end
   end
 
