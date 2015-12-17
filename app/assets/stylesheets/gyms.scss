@@ -6,12 +6,14 @@ body {
 	padding-top: 40px;
 	background-color: #2b333b;
 }
-table,
-td, tr {
-	padding-right: 10px;
-	padding-left: 10px;
-
+table {
+	width: 100%;
+	border-collapse: collapse;
 }
+td, th {
+	padding: 6px;
+}
+
 .container {
 	margin: auto;
 	max-width: 1000px;
@@ -55,6 +57,23 @@ td, tr {
 	background-color: rgba(43,51,59,.5);
 }
 
-@media (min-width: 600px) {
-
+@media 
+only screen and (max-width: 500px),
+(min-device-width: 500px) and (max-device-width 1024px) {
+	table, thead, tbody, th, td, tr {
+		display: inline-block;
+	}
+	td {
+		border: none;
+		position: relative;
+	
+	}
+	td:before {
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
 }

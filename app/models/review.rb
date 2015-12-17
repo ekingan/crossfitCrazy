@@ -6,7 +6,7 @@ class Review < ActiveRecord::Base
 
 	before_save :total_rating
 
-	# before_destroy :total_rating
+	before_destroy :total_rating
 
 	def total_rating
 		val = self.programming.to_i + self.value.to_i + self.community.to_i + self.value.to_i
