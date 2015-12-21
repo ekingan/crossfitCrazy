@@ -43,12 +43,14 @@
 		</span>
 
   <% end %>
-
+	
  </div><!-- end column 1 -->
 		
 		<!-- end gym show -->
 		<div class="col-md-6"><!-- NEW REVIEW FORM -->
 		<% if @user %>
+		
+		<br>
 			<div class="well"> <!-- column 2 row 2 -->
 				<h5 class="text-center">Write a Review</h5>
 					<%= form_for @review do |r| %>
@@ -95,6 +97,8 @@
 			<% end %> <!-- end form -->
 		<!-- END OF NEW REVIEW FORM -->
 			</div><!-- end well -->
+			<br>
+			<br>
 		</div><!-- end col -->
 		<% end %>
 	</div> <!-- end of if @user -->
