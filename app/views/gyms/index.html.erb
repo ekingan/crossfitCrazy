@@ -1,7 +1,7 @@
 <div class="kettlebell-background"></div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-2">
+			<div class="col-md-8">
 	<!-- search bars -->
 		    <div class="form-group">
 		      <div class="input-group" >
@@ -12,7 +12,7 @@
 		              <div class="input-append">
 		              <%= text_field_tag :search_name, params[:search_name], class: "form-control", autocomplete: "off", placeholder: "Search By Name" %>
 		              <%= text_field_tag :search_city, params[:search_city], class: "form-control", autocomplete: "off", placeholder: "Search By Location" %>
-		                <button class="btn btn-danger" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+		                <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 		              </div>
 		              <% end %>
 		          </li>
@@ -24,7 +24,7 @@
 	 	</div>	
 	  <!-- end search bar -->
 		<div class="row">
-			<div class="col-md-7 col-md-offset-2">
+			<div class="col-md-8">
 				<h2><%= @welcome %></h2>
 				<% @gyms.each do |gym| %>
 				<div class="well well-sm">
@@ -38,7 +38,7 @@
 					  			<% end %>
 					  		</tr>
 					  		<tr>
-					  			<td><h4><%= gym.address %></h4></td>
+					  			<td><%= gym.address %></td>
 					  			<td></td>
 					  		</tr>
 					  		<tr>
@@ -68,7 +68,9 @@
 						</div>
 					</div>
 				<% end %>	
-			</div>	
+			</div>	<!-- end col -->
+
+			</div>
 		</div>
 		<div id="infinite-scrolling">
 		  <%= will_paginate @gyms %>

@@ -4,7 +4,23 @@
 
 body {
 	padding-top: 40px;
-	background-color: #2b333b;
+	// background-color: #2b333b;
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 10px;
+  padding-right: 5px;
+}
+.row {
+  margin-left: -5px;
+  margin-right: -5px;
 }
 table {
 	width: 100%;
@@ -23,7 +39,7 @@ td, th {
 }
 
 .kettlebell-background {
-	background-image: url(image_path('kettlebells2.jpg'));
+	background-image: url(image_path('handstand2.jpg'));
  	background-position: center top;
  	background-repeat: no-repeat;
  	background-attachment: scroll;
@@ -35,7 +51,7 @@ td, th {
  
 }
 .handstand-background {
-	background-image: url(image_path('handstand.jpg'));
+	background-image: url(image_path('jeremy.jpg'));
 	background-position: center bottom;
  	background-repeat: no-repeat;
  	background-attachment: scroll;
@@ -46,28 +62,24 @@ td, th {
   width: 100%;
 	
 }
-.navbar-default {
-  background-color: #2b333b;
-  border-color: transparent;
-}
-.navbar-default .navbar-brand {
-  color: #ebebeb;
-}
+// .navbar {
+// 	background-color: black;
+// }
 .well {
-	background-color: rgba(43,51,59,.8);
+	background-color: rgba(225,225,223,.8);
 }
 #infinite-scrolling {
 	padding: 0px;
 }
 .well {
-	padding: 4px;
-	margin: 5px;
+	padding: 2px;
+	
 }
 .well-sm {
-	padding: 2px
+	padding: 1px
 }
  a {
- 	color: white;
+ 	// color: white;
  }
 
 // @media 

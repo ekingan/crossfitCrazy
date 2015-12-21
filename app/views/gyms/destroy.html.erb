@@ -1,2 +1,24 @@
 <h1>Gyms#destroy</h1>
 <p>Find me in app/views/gyms/destroy.html.erb</p>
+<h2><%= @welcome %></h2>
+				<% @gyms.each do |gym| %>
+				<div class="well well-sm">
+					<div class="table-responsive">
+						<div class="table table-condensed table-striped table-hover">
+							<table style="width:100%">
+					  		<tr> 
+					  			<td><h3><%= link_to gym.name, gym_path(gym.id) %></h3></td>
+									<% if params[:search_name].blank? && params[:search_city].blank? %>
+					  				<td align="right"> </td>
+					  			<% end %>
+					  		</tr>
+					  		<tr>
+					  			<td><h4><%= gym.address %></h4></td>
+					  			<td></td>
+					  		</tr>
+					  		<tr>
+					  			<td><h4><%= link_to "#{gym.website}", "#{gym.website}", :target => "_blank"%></h4></td>
+					  			<td align='right'><em><%= pluralize gym.reviews.size, 'review'%></em><br></td>
+					  		</tr>
+					 		</table>
+					 	</div>
