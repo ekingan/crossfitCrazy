@@ -8,9 +8,9 @@
 			<div class="col-md-6"> <!-- column 1 -->
 				<div class="well well-sm">
 				<h3><%=@gym.name%></h3>
-					<h5><% if @gym.address %> <%= @gym.address %> <% else %> <%= link_to 'Update Address', edit_gym_path %> <% end %></h5>
-					<h5><% if @gym.website %> <%= link_to "#{@gym.website}", "#{@gym.website}", :target => "_blank"%> <% else %> <%= link_to 'Update Website', edit_gym_path %> <% end %></h5>
-					<h5><% if @gym.phone %> <%= @gym.phone %> <% else %> <%= link_to 'Update Phone', edit_gym_path %> <% end %></h5>
+					<h5><% if @gym.address %> <%= @gym.address %> <% elsif @user %> <%= link_to 'Update Address', edit_gym_path %> <% else %> Log in to update address<% end %></h5>
+					<h5><% if @gym.website %> <%= link_to "#{@gym.website}", "#{@gym.website}", :target => "_blank"%> <% elsif @user %> <%= link_to 'Update Website', edit_gym_path %> <% else %> Log in to update website <% end %></h5>
+					<h5><% if @gym.phone %> <%= @gym.phone %> <% elsif @user %> <%= link_to 'Update Phone', edit_gym_path %> <% else %> Log in to update phone number <% end %></h5>
 					<h5><%= @gym.w_vs_m %> <em class='pull-right'><%= pluralize @gym.reviews.size, 'review'%></em><br></h5>
 		<div class="row">
 				<div class="col-xs-6 col-sm-3">
@@ -31,22 +31,23 @@
 				</div>
 			</div>
 
-			<% if @user %>
-		<span class="pull-left"><%= link_to 'Write a Review', '#', class: 'btn btn-primary btn-sm', data: {toggle: "modal", target: "#review-modal"}  %></span>
-	<% end %>
+			<% if !@user%>
+			<span class="pull-left"><%= link_to 'Log in to Write a Review', '/login', class: 'btn btn-primary btn-sm'  %></span>
+		<% end %>
 
 		</div>
 		
 	</div>
 	<div class="col-md-6"><!-- 	BEGIN map -->
-		<div id="map" style='width: 100%; height: 250px;'></div>
+		<div id="map" style='width: 100%; height: 210px;'></div>
 		<!-- END map -->
 	</div><!-- end column 1 -->
 </div><!-- end row 1 -->
-<!-- Begin of Review Show -->
+
+<!-- Begin of Review Show for User logged in-->
+<% if @user %>
 <div class="row"> <!-- row 3 -->
 	<div class="col-md-6">
-		<% if @user %>
 			<div class="well"> <!-- column 2 row 2 -->
 				<h5 class="text-center">Write a Review</h5>
 					<%= form_for @review do |r| %>
@@ -90,15 +91,16 @@
 			<div class="text-right">
 				<%= r.submit 'review', value: "Post!", class: "btn btn-primary btn-sm" %>
 			</div>
-			<% end %>
 			<% end %> <!-- end form -->
 		<!-- END OF NEW REVIEW FORM -->
 			</div><!-- end well -->
 		</div><!-- end col -->
 			
 	<% if @reviews.count < 1  %>
-	<div class="well well-sm">
-		<h3><center><%= @no_reviews %></center></h3>
+	<div class="col-md-6">
+		<div class="well well-sm">
+			<h3><center><%= @no_reviews %></center></h3>
+		</div>
 	</div>
 	<% else %>
 			<!-- Display Reviews -->
@@ -138,9 +140,61 @@
 				</ul>
 	  	</div> <!-- END WELL -->
 	  	<% end %>
-	  	<% end %>
 		</div> <!-- END COL--><!-- end of reviews show -->	
 	</div> <!-- end of row 3 col 1 -->
+	<% end %>
+
+<!-- 	If no user logged in show these reviews -->
+	<% else %>
+	<div class="row review-row">
+			<% if @reviews.count < 1  %>
+		<div class="col-md-12">
+			<div class="well well-sm">
+				<h3><center><%= @no_reviews %></center></h3>
+			</div>
+		</div>
+			<% else %><!-- Display Reviews -->
+		<div class="col-md-12">
+		
+		<% @reviews.reverse.each do |review|  %>
+			<div class="well well-sm">
+				<% user_id = review.user_id %>
+					<% author = User.find(user_id) %>
+				<ul class='list-unstyled'>
+					<li class='list-unstyled'>
+						<h5>Posted by <%= author.username %> on <%= review.created_at.strftime("%B %d, %Y") %></h5>
+						<h5><%= review.body %></h5>
+							<div class="row">
+								<div class="col-xs-6 col-sm-3">
+									Programming<br>
+									<div class="star-rating-pro" data-score=<%= review.programming %>></div>
+								</div>
+								<div class="col-xs-6 col-sm-3">
+									Community<br>
+									<div class="star-rating-com" data-score=<%= review.community %>></div>
+								</div>
+								<div class="col-xs-6 col-sm-3">
+									Value<br>
+									<div class="star-rating-fac" data-score=<%= review.facility %>></div>
+								</div>
+								<div class="col-xs-6 col-sm-3">
+									Facility<br>
+									<div class="star-rating-val" data-score=<%= review.value %>></div>
+								</div>
+							</div>
+							<% if @user %>
+							<span class="pull-right">
+	      				<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
+	     				</span>
+	     				<% end %>					
+	     		</li>
+				</ul>
+	  	</div> <!-- END WELL -->
+	  	<% end %> <!-- end show reviews -->
+		</div> <!-- END COL--><!-- end of reviews show -->	
+	</div> <!-- end of row 3 col 1 -->
+	<% end %>
+	<% end %>
 </div><!-- end of container -->
 
 
@@ -220,7 +274,7 @@
         "width":  32,
         "height": 32
       },
-      "infowindow": ""
+      "infowindow": "<%= @gym.address %>"
     }
   ]);
   handler.bounds.extendWith(markers);
