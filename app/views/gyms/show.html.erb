@@ -148,13 +148,13 @@
 	<% else %>
 	<div class="row review-row">
 			<% if @reviews.count < 1  %>
-		<div class="col-md-12">
+		<div class="col-xs-12">
 			<div class="well well-sm">
 				<h3><center><%= @no_reviews %></center></h3>
 			</div>
 		</div>
 			<% else %><!-- Display Reviews -->
-		<div class="col-md-12">
+		<div class="col-xs-12">
 		
 		<% @reviews.reverse.each do |review|  %>
 			<div class="well well-sm">
