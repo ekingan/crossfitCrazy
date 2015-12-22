@@ -1,24 +1,154 @@
-<h1>Gyms#destroy</h1>
-<p>Find me in app/views/gyms/destroy.html.erb</p>
-<h2><%= @welcome %></h2>
-				<% @gyms.each do |gym| %>
+<div class="handstand-background"></div>
+	<span class="pull-left"><%= link_to 'Back to Results', :back, class: 'btn btn-primary btn-sm' %>
+	</span>
+	<br>
+	<div class="container">
+		<div class="row"><!-- row 1 -->
+		<!-- Gym show  -->
+			<div class="col-md-6"> <!-- column 1 -->
 				<div class="well well-sm">
+				<h3><%=@gym.name%></h3>
+					<h4><%= @gym.address %></h4>
+					<h4><%= link_to "#{@gym.website}", "#{@gym.website}", :target => "_blank"%></h4>
+					<h4><%= @gym.phone %></h4>
+					<h5><%= @gym.w_vs_m %> <em class='pull	-right'><%= pluralize @gym.reviews.size, 'review'%></em><br></h5>
+		<div class="row">
+				<div class="col-xs-6 col-sm-3">
+					Programming<br>
+					<div class="star-rating-pro" data-score=<%= @gym.avg_rating(:programming) %>></div>
+				</div>
+				<div class="col-xs-6 col-sm-3">
+					Community<br>
+					<div class="star-rating-val" data-score=<%= @gym.avg_rating(:community) %>></div>
+				</div>
+				<div class="col-xs-6 col-sm-3">
+					Value<br>
+					<div class="star-rating-val" data-score=<%= @gym.avg_rating(:value) %>></div>
+				</div>
+				<div class="col-xs-6 col-sm-3">
+					Facility<br>
+					<div class="star-rating-val" data-score=<%= @gym.avg_rating(:facility) %>></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="row">
+		<div class="col-md-6">
+
+				<!-- 	BEGIN map -->
+		<div id="map" style='width: 100%; height: 320px;'></div>
+		<!-- END map -->
+		
+		<% if @user %>
+		<span class="pull-left"><%= link_to 'Update Gym Info', edit_gym_path, class: 'btn btn-primary btn-sm' %>
+		</span>
+
+  <% end %>
+	
+ </div><!-- end column 1 -->
+		<!-- end gym show -->
+		<div class="col-md-6"><!-- NEW REVIEW FORM -->
+		<% if @user %>
+		
+		<br>
+			<div class="well"> <!-- column 2 row 2 -->
+				<h5 class="text-center">Write a Review</h5>
+					<%= form_for @review do |r| %>
+						<%= r.hidden_field :gym_id, :value => @gym.id %>
+						<%= r.hidden_field :user_id, :value => @user.id %>
+						<%= r.text_area :body, class: "form-control", autofocus: true, placeholder: "Tell us about your experience here!" %>
+				<br>
+				<div class="check-boxes">
 					<div class="table-responsive">
-						<div class="table table-condensed table-striped table-hover">
+						<div class="table table-condensed">
 							<table style="width:100%">
-					  		<tr> 
-					  			<td><h3><%= link_to gym.name, gym_path(gym.id) %></h3></td>
-									<% if params[:search_name].blank? && params[:search_city].blank? %>
-					  				<td align="right"> </td>
-					  			<% end %>
-					  		</tr>
-					  		<tr>
-					  			<td><h4><%= gym.address %></h4></td>
-					  			<td></td>
-					  		</tr>
-					  		<tr>
-					  			<td><h4><%= link_to "#{gym.website}", "#{gym.website}", :target => "_blank"%></h4></td>
-					  			<td align='right'><em><%= pluralize gym.reviews.size, 'review'%></em><br></td>
-					  		</tr>
-					 		</table>
-					 	</div>
+				  			<tr>
+				    			<td><%= r.check_box(:weightlifting_focus) %>Weightlifting Focus</td>
+									<td><%= r.check_box(:metcon_focus) %> Metcon Focus</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="ratings">
+				<div class="row">
+					<div class="col-xs-6 col-sm-3">
+						Programming<br>
+						<div id="star-rating-pro"></div>
+					</div>
+					<div class="col-xs-6 col-sm-3">
+						Community<br>
+						<div id="star-rating-com"></div>
+					</div>
+					<div class="col-xs-6 col-sm-3">
+						Value<br>
+						<div id="star-rating-val"></div>
+					</div>
+					<div class="col-xs-6 col-sm-3">
+						Facility<br>
+						<div id="star-rating-fac"></div>
+					</div>
+				</div>
+				<br>
+			</div>
+			<div class="text-right">
+				<%= r.submit 'review', value: "Post!", class: "btn btn-primary btn-sm" %>
+			</div>
+			<% end %> <!-- end form -->
+		<!-- END OF NEW REVIEW FORM -->
+			</div><!-- end well -->
+		</div><!-- end col -->
+		<% end %>
+	</div> <!-- end of if @user -->
+	<% if @reviews.count < 1  %>
+	<br>
+		<div class="well well-sm">
+			<h3><center><%= @no_reviews %></center></h3>
+		</div>
+	<% else %>
+		<% @reviews.reverse.each do |review|  %>
+		<div class="row"> <!-- row 3 -->
+		<!-- Display Reviews -->
+			<div class="col-md-12">
+				<div class="well well-sm">
+					
+					<% user_id = review.user_id %>
+						<% author = User.find(user_id) %>
+					<ul class='list-unstyled'>
+						<li class='list-unstyled'>
+							<h5>Posted by <%= author.username %> on <%= review.created_at.strftime("%B %d, %Y") %></h5>
+							<h5><%= review.body %></h5>
+								<div class="row">
+									<div class="col-xs-6 col-sm-3">
+										Programming<br>
+										<div class="star-rating-pro" data-score=<%= review.programming %>></div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										Community<br>
+										<div class="star-rating-com" data-score=<%= review.community %>></div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										Value<br>
+										<div class="star-rating-fac" data-score=<%= review.facility %>></div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										Facility<br>
+										<div class="star-rating-val" data-score=<%= review.value %>></div>
+									</div>
+								</div>
+								<% if @user %>
+								<span class="pull-right">
+		      				<%= link_to '', "/reviews/#{review.id}/edit", class: 'ion ion-edit' %>
+		     				</span>
+		     				<% end %>					
+		     		</li>
+					</ul>
+		  	</div> <!-- END WELL -->
+		 	</div> <!-- END COL-->
+	  	<!-- end of reviews show -->	
+		</div> <!-- end of row 3 col 1 -->
+			<% end %>
+			<% end %>
+</div><!-- end of container -->
+
