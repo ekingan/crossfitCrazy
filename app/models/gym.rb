@@ -18,7 +18,7 @@ class Gym < ActiveRecord::Base
 
 	def all_total_ratings
 		totals = self.reviews.map { |review| review.total_rating }
-		grand_total = (totals.reduce(:+)) / self.reviews.length	
+		grand_total = (totals.reduce(:+) / self.reviews.length)
 		self.total_rating = grand_total
 		p "in all total_ratings" * 100
 		self.save
