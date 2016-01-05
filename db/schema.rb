@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216225309) do
+ActiveRecord::Schema.define(version: 20160105071133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151216225309) do
     t.boolean  "metcon_focus"
     t.integer  "total_rating"
     t.integer  "schedule",            default: 0
+    t.integer  "count"
   end
 
   add_index "reviews", ["gym_id"], name: "index_reviews_on_gym_id", using: :btree

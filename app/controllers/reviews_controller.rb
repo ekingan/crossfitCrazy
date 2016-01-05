@@ -33,6 +33,7 @@ class ReviewsController < ApplicationController
     @user = current_user
     if current_user
       @review.update_attributes(review_params)
+      @gym.all_total_ratings
       redirect_to @review.gym 
     else
     end
@@ -46,6 +47,7 @@ class ReviewsController < ApplicationController
     # destroy post
     @gym = @review.gym
     @review.destroy
+    @gym.all_total_ratings
 
     redirect_to @gym
   end

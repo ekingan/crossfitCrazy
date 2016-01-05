@@ -1,3 +1,4 @@
+add count column to reviews
 
 Get current location (around me) - 
 	on click getlocation
