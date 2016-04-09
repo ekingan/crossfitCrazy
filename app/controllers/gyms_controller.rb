@@ -1,13 +1,13 @@
 class GymsController < ApplicationController
   
   def index
-    p request.location
-    if request.location.latitude == 0.0
+    # p request.location
+    # if request.location.latitude == 0.0
       @latitude = 37.774929
       @longitude = -122.419416
-    else
-      @latitude = request.location.latitude
-      @longitude = request.location.longitude 
+    # else
+    #   @latitude = request.location.latitude
+    #   @longitude = request.location.longitude 
       
     end 
 
