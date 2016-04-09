@@ -9,7 +9,7 @@ class GymsController < ApplicationController
     #   @latitude = request.location.latitude
     #   @longitude = request.location.longitude 
       
-    end 
+    
 
     if params[:search_name].present? && params[:search_city].present?
       @welcome = "Search results by name and city"
